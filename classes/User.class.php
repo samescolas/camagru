@@ -14,7 +14,7 @@ class User {
 				'username',
 				'=',
 				$fields['username']
-			))->results();
+			))->first()->id;
 		}
 		$passwd_fields = array(
 			'user_id' => $id,

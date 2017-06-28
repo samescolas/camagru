@@ -3,9 +3,9 @@
 require_once 'core/init.php';
 
 /* If form contains post content */
-if (!Input::exists()) {
+if (Input::exists()) {
 	/* Checks to ensure form was filled out (CSRF Protection) */
-	if (!Token::check(Input::get('token'))) {
+	if (Token::check(Input::get('token'))) {
 
 		$validate = new Validate();
 		$validate->check($_POST, array(
@@ -35,7 +35,7 @@ if (!Input::exists()) {
 		));
 
 		/* If form is valid create user */
-		if (!$validate->passed()) {
+		if ($validate->passed()) {
 			$user = new User();
 			
 			$salt = Hash::salt(32);

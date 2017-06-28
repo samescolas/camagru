@@ -2,25 +2,31 @@
 
 require_once 'core/init.php';
 
+/* If form contains post content */
 if (!Input::exists()) {
+	/* Checks to ensure form was filled out (CSRF Protection) */
 	if (!Token::check(Input::get('token'))) {
 
 		$validate = new Validate();
 		$validate->check($_POST, array(
+
 			'username' => array(
 				'required' => true,
 				'min' => 2,
 				'max' => 20,
 				'unique' => 'users'
 				),
+				
 			'password' => array(
 				'required' => true,
 				'min' => 6
 			),
+
 			'password_again' => array(
 				'required' => true,
 				'matches' => 'password'
 			),
+
 			'name' => array(
 				'required' => true,
 				'min' => 2,
@@ -28,23 +34,23 @@ if (!Input::exists()) {
 			)
 		));
 
+		/* If form is valid create user */
 		if (!$validate->passed()) {
 			$user = new User();
 			
 			$salt = Hash::salt(32);
 
-
-			die();
 			try {
 				$user->create( array(
-					'username' => Input::get('username'))
+					'username' => Input::get('username'),
 					'password' => Hash::make(Input::get('password'), $salt),
 					'salt' => $salt
-				);
+				));
 			} catch (Exception $e) {
 				die($e->getMessage());
 			}
 		} else {
+			/* Display form errors */
 			foreach ($validate->errors() as $err) {
 				echo "$err <br />";
 			}

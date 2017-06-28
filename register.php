@@ -2,8 +2,8 @@
 
 require_once 'core/init.php';
 
-if (Input::exists()) {
-	if (Token::check(Input::get('token'))) {
+if (!Input::exists()) {
+	if (!Token::check(Input::get('token'))) {
 
 		$validate = new Validate();
 		$validate->check($_POST, array(
@@ -28,9 +28,22 @@ if (Input::exists()) {
 			)
 		));
 
-		if ($validate->passed()) {
-			Session::flash('success', 'You registered successfully!');
-			header('Location: index.php');
+		if (!$validate->passed()) {
+			$user = new User();
+			
+			$salt = Hash::salt(32);
+
+
+			die();
+			try {
+				$user->create( array(
+					'username' => Input::get('username'))
+					'password' => Hash::make(Input::get('password'), $salt),
+					'salt' => $salt
+				);
+			} catch (Exception $e) {
+				die($e->getMessage());
+			}
 		} else {
 			foreach ($validate->errors() as $err) {
 				echo "$err <br />";

@@ -2,8 +2,8 @@
 
 require_once 'core/init.php';
 
-$user = Database::getInstance()->update('users', 2, array(
-	'username' => 'Lili'
-));
+if (Session::exists('success')) {
+	echo Session::flash('success');
+}
 
 ?>

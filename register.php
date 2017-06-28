@@ -17,7 +17,7 @@ if (Input::exists()) {
 				'required' => true,
 				'min' => 6
 			),
-		'password_again' => array(
+			'password_again' => array(
 				'required' => true,
 				'matches' => 'password'
 			),
@@ -29,7 +29,8 @@ if (Input::exists()) {
 		));
 
 		if ($validate->passed()) {
-			echo "Passed!";
+			Session::flash('success', 'You registered successfully!');
+			header('Location: index.php');
 		} else {
 			foreach ($validate->errors() as $err) {
 				echo "$err <br />";

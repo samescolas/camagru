@@ -3,34 +3,37 @@
 require_once 'core/init.php';
 
 if (Input::exists()) {
-	$validate = new Validate();
-	$validate->check($_POST, array(
-		'username' => array(
-			'required' => true,
-			'min' => 2,
-			'max' => 20,
-			'unique' => 'users'
-			),
-		'password' => array(
-			'required' => true,
-			'min' => 6
-		),
-		'password_again' => array(
-			'required' => true,
-			'matches' => 'password'
-		),
-		'name' => array(
-			'required' => true,
-			'min' => 2,
-			'max' => 25
-		)
-	));
+	if (Token::check(Input::get('token'))) {
 
-	if ($validate->passed()) {
-		echo "Passed!";
-	} else {
-		foreach ($validate->errors() as $err) {
-			echo "$err <br />";
+		$validate = new Validate();
+		$validate->check($_POST, array(
+			'username' => array(
+				'required' => true,
+				'min' => 2,
+				'max' => 20,
+				'unique' => 'users'
+				),
+			'password' => array(
+				'required' => true,
+				'min' => 6
+			),
+		'password_again' => array(
+				'required' => true,
+				'matches' => 'password'
+			),
+			'name' => array(
+				'required' => true,
+				'min' => 2,
+				'max' => 25
+			)
+		));
+
+		if ($validate->passed()) {
+			echo "Passed!";
+		} else {
+			foreach ($validate->errors() as $err) {
+				echo "$err <br />";
+			}
 		}
 	}
 }

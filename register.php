@@ -2,7 +2,6 @@
 
 require_once 'core/init.php';
 
-
 if (Input::exists()) {
 	$validate = new Validate();
 	$validate->check($_POST, array(
@@ -58,6 +57,8 @@ if (Input::exists()) {
 		<label for="name">Your name</label>
 		<input type="text" name="name" id="name" />
 	</div>
+
+	<input type="hidden" name="token" value="<?php echo Token::generate() ?>" />
 
 	<input type="submit" value="Register" />
 </form>

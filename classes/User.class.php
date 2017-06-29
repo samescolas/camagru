@@ -60,6 +60,16 @@ class User {
 		}
 	}
 
+	public function update($fields = array(), $id = null) {
+		/* If no user specified, use current. */
+		if (!$id && $this->isLoggedIn()) {
+			$id = $this->data()->user_id;
+		}
+		if (!$this->_db->update('users', $id, $fields)) {
+			throw new Exception('There was a problem updating your shit.');
+		}
+	}
+
 	public function login($username = null, $password = null, $remember = false) {
 		$user = $this->find($username);
 

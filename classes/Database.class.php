@@ -116,7 +116,6 @@ class Database {
 				$set .= ',';
 			}
 		}
-
 		$sql = "UPDATE $table SET $set WHERE id = $id;";
 		if (!$this->query($sql, $fields)->error()) {
 			return (true);

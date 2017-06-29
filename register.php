@@ -46,6 +46,10 @@ if (Input::exists()) {
 					'password' => Hash::make(Input::get('password'), $salt),
 					'salt' => $salt
 				));
+
+				Session::flash('home', 'You have successfully registered!');
+				Redirect::to('index.php');
+
 			} catch (Exception $e) {
 				die($e->getMessage());
 			}

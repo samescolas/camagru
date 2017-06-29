@@ -6,4 +6,8 @@ if (Session::exists('success')) {
 	echo Session::flash('success');
 }
 
+if (Session::exists('home')) {
+	echo Session::flash('home');
+}
+
 ?>

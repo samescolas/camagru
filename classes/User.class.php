@@ -68,10 +68,11 @@ class User {
 
 				if ($remember) {
 					$hash = Hash::unique();
-					$hashCheck = $this->_db->get('sessions', array('user_id', '=', $this->data()->id));
+					$hashCheck = $this->_db->get('sessions', array('user_id', '=', $this->data()->user_id));
 					if (!$hashCheck->count()) {
-						$this->_db->insert(array(
-							'user_id' =>$this->data()->id,
+
+						$this->_db->insert('sessions', array(
+							'user_id' =>$this->data()->user_id,
 							'hash' => $hash
 						));
 					} else {

@@ -7,6 +7,7 @@ if (Input::exists()) {
 
 		$validate = new Validate();
 		$validate->check($_POST, array (
+		/* Add 'exists' => true to validation */
 			'username' => array (
 				'required' => true
 			),
@@ -48,7 +49,7 @@ if (Input::exists()) {
 
 	<div class="field">
 		<label for="remember">
-			<input type="checkbox" name="remember" id="remember" />Remember me?
+			<input type="checkbox" name="remember" id="remember" value="on" />Remember me?
 		</label>
 	</div>
 

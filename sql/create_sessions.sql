@@ -1,7 +1,7 @@
 CREATE TABLE sessions (
 	id INT NOT NULL AUTO_INCREMENT,
 	user_id INT NOT NULL,
-	hash CHAR(32) NOT NULL,
+	hash CHAR(64) NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (user_id) REFERENCES users(id)
 );

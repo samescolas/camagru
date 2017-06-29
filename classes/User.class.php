@@ -60,28 +60,33 @@ class User {
 		}
 	}
 
-	public function login($username = null, $password = null, $remember) {
+	public function login($username = null, $password = null, $remember = false) {
 		$user = $this->find($username);
-		if ($user) {
-			if ($this->data()->passwd === Hash::make($password, $this->data()->salt)) {
-				Session::put($this->_sessionName, $this->data()->user_id);
 
-				if ($remember) {
-					$hash = Hash::unique();
-					$hashCheck = $this->_db->get('sessions', array('user_id', '=', $this->data()->user_id));
-					if (!$hashCheck->count()) {
+		if (!$username && !$password && $this->exists()) {
+			Session::put($this->_sessionName, $this->data()->user_id);
+		} else {
 
-						$this->_db->insert('sessions', array(
-							'user_id' =>$this->data()->user_id,
-							'hash' => $hash
-						));
-					} else {
-						$hash = $hashCheck->first()->hash;
+			if ($user) {
+				if ($this->data()->passwd === Hash::make($password, $this->data()->salt)) {
+					Session::put($this->_sessionName, $this->data()->user_id);
+		
+					if ($remember) {
+						$hash = Hash::unique();
+						$hashCheck = $this->_db->get('sessions', array('user_id', '=', $this->data()->user_id));
+						if (!$hashCheck->count()) {
+	
+							$this->_db->insert('sessions', array(
+								'user_id' =>$this->data()->user_id,
+								'hash' => $hash
+							));
+						} else {
+							$hash = $hashCheck->first()->hash;
+						}
+						Cookie::put($this->_cookieName, $hash, Config::get('remember/cookie_expiry'));
 					}
-					Cookie::put($this->_cookieName, $hash, Config::get('remember/cookie_expiry'));
+					return (true);
 				}
-
-				return (true);
 			}
 		}
 		return (false);
@@ -103,6 +108,13 @@ class User {
 
 	public function isLoggedIn() {
 		return ($this->_isLoggedIn);
+	}
+
+	public function exists() {
+		if (!empty($this->_data))
+			return (true);
+		else
+			return (false);
 	}
 
 }

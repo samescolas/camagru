@@ -21,8 +21,11 @@ class User {
 			'passwd' => $fields['password'],
 			'salt' => $fields['salt']
 		);
+		$this->setPass($passwd_fields);
+	}
 
-		if (!$id || !$this->_db->insert('shadow', $passwd_fields)) {
+	private function setPass($pw_fields) {
+		if (!$pw_fields['user_id'] || !$this->_db->insert('shadow', $pw_fields)) {
 			throw new Exception ('There was a prblem creating an account.');
 		}
 	}

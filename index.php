@@ -16,6 +16,7 @@ if  ($user->isLoggedIn()) {
 ?>
 	<p> <a href="welcome.php">Welcome, <?php echo escape($user->data()->username); ?>!</a></p>
 	<p> <a href="update.php">Update Account</a></p>
+	<p> <a href="changepassword.php">Change Password</a></p>
 	<p> <a href="logout.php">Logout</a></p>
 <?php
 } else {

@@ -113,8 +113,9 @@ class Database {
 		foreach($fields as $name => $value) {
 			$set .= "$name = ?";
 			if ($x < count($fields)) {
-				$set .= ',';
+				$set .= ', ';
 			}
+			$x++;
 		}
 		$sql = "UPDATE $table SET $set WHERE id = $id;";
 		if (!$this->query($sql, $fields)->error()) {

@@ -70,6 +70,12 @@ class User {
 		}
 	}
 
+	public function updatePassword($fields) {
+		if (!$this->_db->update('shadow', $this->data()->id, $fields)) {
+			throw new Exception('Unable to update password');
+		}
+	}
+
 	public function login($username = null, $password = null, $remember = false) {
 		$user = $this->find($username);
 

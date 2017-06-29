@@ -2,6 +2,7 @@
 
 class User {
 	private $_db;
+	private $_data;
 
 	public function __construct($user = null) {
 		$this->_db = Database::getInstance();
@@ -22,6 +23,31 @@ class User {
 			'salt' => $fields['salt']
 		);
 		$this->setPass($passwd_fields);
+	}
+
+	public function find($user = null) {
+		$tbls = 'users u left join shadow s on s.user_id = u.id';
+		if ($user) {
+			$data = $this->_db->get($tbls, array('u.username', '=', $user));
+
+			if ($data && $data->count()) {
+				$this->_data = $data->first();
+				return (true);
+			}
+		}
+	}
+
+	public function login($username = null, $password = null) {
+		$user = $this->find($username);
+		if ($user) {
+			if ($this->data()->passwd === Hash::make($password, $this->data()->salt))
+				return (true);
+		}
+		return (false);
+	}
+
+	private function data() {
+		return ($this->_data);
 	}
 
 	private function setPass($pw_fields) {

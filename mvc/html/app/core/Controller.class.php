@@ -9,6 +9,10 @@ class Controller {
 		}
 		return (null);
 	}
+
+	public function view($view, $data = array()) {
+		require_once __DIR__ . '/../views/' . $view . '.php';
+	}
 }
 
 ?>

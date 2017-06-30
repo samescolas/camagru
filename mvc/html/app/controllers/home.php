@@ -4,8 +4,9 @@ class Home extends Controller {
 
 	public function index($name = '') {
 		$user = $this->model('User');
-		$user->name = "Sam";
-		echo $user->name;
+		$user->name = $name;
+
+		$this->view('home/index', array('name' => $user->name));
 	}
 
 	public function hello($name1='', $name2='') {

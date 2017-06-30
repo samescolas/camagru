@@ -28,7 +28,10 @@ class User {
 	}
 
 	public function create($fields = array()) {
-		$user_fields = array( 'username' => $fields['username']);
+		$user_fields = array(
+			'username' => $fields['username'],
+			'email' => $fields['email']
+		);
 		if  ($this->_db->insert('users', $user_fields)) {
 			$id = $this->_db->get('users', array(
 				'username',

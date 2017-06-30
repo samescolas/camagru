@@ -16,8 +16,8 @@ class Home extends Controller {
 		}
 	}
 
-	public function welcome($name1='', $name2='') {
-		echo "hey, $name1!" . "<br />";
+	public function welcome($name='') {
+		echo "Hey, $name!" . "<br />";
 	}
 
 }

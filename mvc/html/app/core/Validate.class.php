@@ -18,6 +18,10 @@ class Validate {
 				} else if (isset($source[$item])) {
 					$value = $source[$item];
 					switch($rule) {
+						case 'filter':
+							if (filter_var($value, $rule_value) === false)
+								$this->addError("$item looks fishy...");
+							break ;
 						case 'min':
 							if (strlen($value) < $rule_value)
 								$this->addError("$item must be a min of $rule_value characters.");

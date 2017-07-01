@@ -1,6 +1,5 @@
 <?php
 
-//session_save_path(__DIR__ . '/../public');
 session_start();
 
 $GLOBALS['config'] = array(

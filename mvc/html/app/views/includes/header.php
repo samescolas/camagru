@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<title>Camagru</title>
-	<link rel="stylesheet" type="text/css" href="../../public/resources/css/header.css">
+	<link rel="stylesheet" type="text/css" href="../../resources/css/header.css">
 </head>
 <body>
 	<div class="header">

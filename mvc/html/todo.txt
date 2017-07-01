@@ -1,0 +1,4 @@
+fix sendmail configuration
+server config script
+	a2enmod rewrite
+

@@ -13,7 +13,7 @@ class Home extends Controller {
 		
 		if ($user->isLoggedIn()) {
 			// load content
-			echo "welcome!";
+			Redirect::to('profile/me');
 		} else {
 			$token = Token::generate();
 			Redirect::to('register/' . $token);

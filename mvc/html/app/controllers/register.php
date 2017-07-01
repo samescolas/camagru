@@ -4,13 +4,15 @@ require_once __DIR__ . '/../init.php';
 
 class Register extends Controller {
 
-	public function index() {
+	/*
+	** Validate and submit form. Token for CSRF protection.
+	*/
+	public function index($token) {
 		if (Input::exists()) {
-			$validation = $this->validate();
-			if ($valdiation !== false && $validation->passed()) {
+			if (($validation = $this->validate_form()) === false)
+			if ($validation !== false && $validation->passed()) {
 				$user = $this->model('User');
-				$salt = Hash::salt(32);
-				$this->registerUser($user, $salt);
+				$this->registerUser($user);
 				Redirect::to('../home/welcome/' . Input::get('username'));
 			} else if($validation !== false) {
 				foreach ($validation->errors() as $err) {
@@ -18,15 +20,17 @@ class Register extends Controller {
 				}
 			}
 		}
-		$token = Token::generate();
-		$this->view('home/register', array( 
-			'token' => $token,
-			'username' => Input::get('username'),
-			'email' => Input::get('email')
-		));
+		if (!Input::exists() || $validation === false || !$validation->passed()) {
+			$this->view('home/register', array( 
+				'token' => $token,
+				'username' => Input::get('username'),
+				'email' => Input::get('email')
+			));
+		}
 	}
 
-	private function registerUser(User $user, $salt) {
+	private function registerUser(User $user) {
+		$salt = Hash::salt(32);
 		try {
 			$user->create(array(
 				'username' => Input::get('username'),
@@ -34,12 +38,16 @@ class Register extends Controller {
 				'password' => Hash::make(Input::get('password'), $salt),
 				'salt' => $salt
 			));
+			$user->validateEmail(array(
+				'username' => Input::get('username'),
+				'email' => Input::get('email')
+			));
 		} catch (Exception $e) {
 			die($e->getMessage());
 		}
 	}
 
-	private function validate() {
+	private function validate_form() {
 		if (Token::check(Input::get('token'))) {
 			$validate = new Validate();
 			$validate->check($_POST, array(

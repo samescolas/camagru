@@ -45,6 +45,7 @@ class User {
 			'salt' => $fields['salt']
 		);
 		$this->setPass($passwd_fields);
+		$this->find($id);
 	}
 
 	public function find($user = null) {
@@ -77,6 +78,36 @@ class User {
 		if (!$this->_db->update('shadow', $this->data()->id, $fields)) {
 			throw new Exception('Unable to update password');
 		}
+	}
+
+	public function validateEmail($fields) {
+		$token = Token::create();
+		//$id = $this->_db->get('users', array('email', '=', $fields['email']))->first()->id;
+		$this->_db->insert('email_validation', array(
+			'user_id' => $this->data()->user_id,
+			'token' => $token
+		));
+		$this->sendValidationEmail($fields, $token);
+	}
+
+	public function verifyEmail($id, $token) {
+		$data = $this->_db->get('email_validation', array('user_id', '=', $id))->first();
+		if ($data->token == $token) {
+			$this->_db->del('email_validation', array('user_id', '=', $id));
+			return (true);
+		}
+		return (false);
+	}
+
+	private function sendValidationEmail($fields, $token = null) {
+		if (!$token) {
+			$this->_db->del('email_validation', array('user_id', '=', $this->data()->user_id));
+			return $this->validateEmail($fields);
+		}
+		$link = "http://" . $_SERVER['SERVER_NAME'] . "/verify/" . $token . "/" . $fields['username'];
+		$msg = "Welcome to Camagru, " . $fields['username'] .
+			"!\nPlease follow this link to verify your email address.\n";
+		mail($fields['email'], "Email Verification", $msg . $link);
 	}
 
 	public function login($username = null, $password = null, $remember = false) {

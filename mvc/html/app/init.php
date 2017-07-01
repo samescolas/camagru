@@ -15,7 +15,7 @@ $GLOBALS['config'] = array(
 	),
 	'session' => array(
 		'session_name' => 'user',
-		'token_name' => 'token'
+		'token_name' => 'camagru_token'
 	)
 );
 

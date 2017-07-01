@@ -1,19 +1,27 @@
 <?php
 
+if (!class_exists("Controller"))
+		require_once __DIR__ . '/../init.php';
+
 class Home extends Controller {
 
 	public function index($name = '') {
 		//$this->view('home/index', array('name' => $user->name));
 		$user = $this->model('User');
+		if ($name != '')
+			die($name);
 		
 		if ($user->isLoggedIn()) {
 			// load content
 			echo "welcome!";
 		} else {
 			$token = Token::generate();
-			$this->view('home/register', array('token', $token));
-			Redirect::to('../register/' . $token);
+			Redirect::to('register/' . $token);
 		}
+	}
+
+	public function register() {
+		echo "heyy";
 	}
 
 	public function welcome($name='') {

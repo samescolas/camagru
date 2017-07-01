@@ -9,24 +9,24 @@ class Register extends Controller {
 	*/
 	public function index($token) {
 		if (Input::exists()) {
-			if (($validation = $this->validate_form()) === false)
+			$validation = $this->validate_form();
+			if ($validation === false)
+					echo "token problems";
 			if ($validation !== false && $validation->passed()) {
 				$user = $this->model('User');
 				$this->registerUser($user);
-				Redirect::to('../home/welcome/' . Input::get('username'));
+				Redirect::to('login');
 			} else if($validation !== false) {
 				foreach ($validation->errors() as $err) {
 					echo "$err <br />";
 				}
 			}
 		}
-		if (!Input::exists() || $validation === false || !$validation->passed()) {
-			$this->view('home/register', array( 
-				'token' => $token,
-				'username' => Input::get('username'),
-				'email' => Input::get('email')
-			));
-		}
+		$this->view('home/register', array( 
+			'token' => $token,
+			'username' => Input::get('username'),
+			'email' => Input::get('email')
+		));
 	}
 
 	private function registerUser(User $user) {
@@ -48,7 +48,7 @@ class Register extends Controller {
 	}
 
 	private function validate_form() {
-		if (Token::check(Input::get('token'))) {
+		if (Token::check(Input::get('regtok'))) {
 			$validate = new Validate();
 			$validate->check($_POST, array(
 				'username' => array(

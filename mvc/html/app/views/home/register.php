@@ -19,7 +19,7 @@
 		<input type="password" name="password_again" id="password_again" />
 	</div>
 
-	<input type="hidden" name="token" value=<?=$data['token']?> />
+	<input type="hidden" name="regtok" value="<?=$data['token']?>" />
 
 	<input type="submit" value="Register" />
 </form>

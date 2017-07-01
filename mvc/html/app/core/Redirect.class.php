@@ -12,6 +12,8 @@ class Redirect {
 					break ;
 				}
 			}
+
+			$location = "http://" . $_SERVER['SERVER_NAME'] . "/$location/";
 			header('Location: ' . $location);
 			exit();
 		}

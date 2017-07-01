@@ -10,8 +10,6 @@ class Register extends Controller {
 	public function index($token) {
 		if (Input::exists()) {
 			$validation = $this->validate_form();
-			if ($validation === false)
-					echo "token problems";
 			if ($validation !== false && $validation->passed()) {
 				$user = $this->model('User');
 				$this->registerUser($user);

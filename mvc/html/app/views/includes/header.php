@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<title>Camagru</title>
-	<link rel="stylesheet" type="text/css" href="header.css">
-	<style>
-		body {
-			background-color: yellow;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="../../public/resources/css/header.css">
 </head>
 <body>
 	<div class="header">

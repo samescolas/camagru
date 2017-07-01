@@ -11,7 +11,7 @@ class App {
 
 	public function __construct() {
 		$url = $this->parseUrl();
-
+			
 		if (file_exists(__DIR__ . '/../controllers/' . $url[0] . '.php')) {
 			$this->controller = $url[0];
 			unset($url[0]);
@@ -32,7 +32,11 @@ class App {
 
 	public function parseUrl() {
 		if (isset($_GET['url'])) {
-			return ($url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL)));
+			$url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
+			if ($url[0] == 'public' && $url[1] != 'resources') {
+				array_shift($url);
+			}
+			return ($url);
 		}
 	}
 }

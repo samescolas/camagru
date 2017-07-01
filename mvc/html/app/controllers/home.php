@@ -6,17 +6,15 @@ if (!class_exists("Controller"))
 class Home extends Controller {
 
 	public function index($name = '') {
-		//$this->view('home/index', array('name' => $user->name));
 		$user = $this->model('User');
-		if ($name != '')
-			die($name);
 		
 		if ($user->isLoggedIn()) {
 			// load content
 			Redirect::to('profile/me');
 		} else {
-			$token = Token::generate();
-			Redirect::to('register/' . $token);
+			if (!Session::exists(Config::get('session/token_name')))
+				Token::generate();
+			Redirect::to('welcome');
 		}
 	}
 

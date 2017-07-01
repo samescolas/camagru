@@ -9,17 +9,28 @@ class Input {
 			case 'get':
 				return ((!empty($_GET)) ? true : false);
 				break ;
+			case 'file':
+				return ((!empty($_FILE)) ? true : false);
+				break ;
 			default:
 				return (false);
 				break ;
 		}
 	}
 
-	public static function get($item) {
-		if (isset($_POST[$item])) {
-			return ($_POST[$item]);
-		} else if (isset($_GET[$item])) {
-			return ($_GET[$item]);
+	public static function get($item, $type='post') {
+		switch($type) {
+			case 'post':
+				if (isset($_POST[$item]))
+					return ($_POST[$item]);
+				break ;
+			case 'get':
+				if (isset($_GET[$item]))
+					return ($_GET[$item]);
+				break ;
+			case 'file':
+				if (iisset($_FILE[$item]))
+						return ($FILE[$item]);
 		}
 		return ("");
 	}

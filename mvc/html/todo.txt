@@ -1,4 +1,5 @@
 fix sendmail configuration
 server config script
 	a2enmod rewrite
+	apt-get install sendmail-bin
 

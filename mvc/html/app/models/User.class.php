@@ -90,7 +90,7 @@ class User {
 	public function validateEmail($fields) {
 		$token = Token::create();
 		//$id = $this->_db->get('users', array('email', '=', $fields['email']))->first()->id;
-		$this->_db->insert('email_validation', array(
+		$this->_db->insert('email_verification', array(
 			'user_id' => $this->data()->user_id,
 			'token' => $token
 		));
@@ -98,9 +98,9 @@ class User {
 	}
 
 	public function verifyEmail($id, $token) {
-		$data = $this->_db->get('email_validation', array('user_id', '=', $id))->first();
+		$data = $this->_db->get('email_verification', array('user_id', '=', $id))->first();
 		if ($data->token == $token) {
-			$this->_db->del('email_validation', array('user_id', '=', $id));
+			$this->_db->del('email_verification', array('user_id', '=', $id));
 			return (true);
 		}
 		return (false);
@@ -108,7 +108,7 @@ class User {
 
 	private function sendValidationEmail($fields, $token = null) {
 		if (!$token) {
-			$this->_db->del('email_validation', array('user_id', '=', $this->data()->user_id));
+			$this->_db->del('email_verification', array('user_id', '=', $this->data()->user_id));
 			return $this->validateEmail($fields);
 		}
 		$link = "http://" . $_SERVER['SERVER_NAME'] . "/verify/" . $token . "/" . $fields['username'];

@@ -10,13 +10,18 @@ class Upload extends Controller {
 	public function __construct() {
 		$this->_user = $this->model('User');
 		$this->_user->shield();
-		$this->_image = $this->model('Image');
 	}
 
 	public function index($username = '') {
 		if (Input::exists('file')) {
 			try {
+				$this->_image = $this->model('Image', array(
+					'user_id' => $this->_user->data()->id,
+					'title' => Input::get('title'),
+					'description' => Input::get('description')
+				));
 				$this->_image->upload();
+				$this->_image->display();
 			} catch (Exception $e) {
 				die($e->getMessage());
 			}

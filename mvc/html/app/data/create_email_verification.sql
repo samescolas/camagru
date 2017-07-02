@@ -1,0 +1,7 @@
+CREATE TABLE email_verification (
+	id INT NOT NULL AUTO_INCREMENT,
+	user_id INT NOT NULL,
+	token VARCHAR(64),
+	PRIMARY KEY (id),
+	FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);

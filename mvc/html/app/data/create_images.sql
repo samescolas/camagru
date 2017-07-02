@@ -1,7 +1,7 @@
 CREATE TABLE images (
 	id INT NOT NULL AUTO_INCREMENT,
 	user_id INT NOT NULL,
-	location VARCHAR(48) NOT NULL,
+	location VARCHAR(80) NOT NULL,
 	image_type VARCHAR(12) NOT NULL,
 	title VARCHAR(32),
 	description TEXT,

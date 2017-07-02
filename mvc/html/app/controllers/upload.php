@@ -14,25 +14,45 @@ class Upload extends Controller {
 
 	public function index($username = '') {
 		if (Input::exists('file')) {
-			try {
-				$this->_image = $this->model('Image', array(
-					'user_id' => $this->_user->data()->id,
-					'title' => Input::get('title'),
-					'description' => Input::get('description')
-				));
-				$this->_image->upload();
-				$this->_image->display();
-			} catch (Exception $e) {
-				die($e->getMessage());
+			$validation = $this->validate_form();
+			if ($validation !== false && $validation->passed()) {
+				try {
+					$this->_image = $this->model('Image', array(
+						'user_id' => $this->_user->data()->id,
+						'title' => Input::get('title'),
+						'description' => Input::get('description')
+					));
+					$this->_image->upload();
+					$this->_image->display();
+				} catch (Exception $e) {
+					die($e->getMessage());
+				}
+			} else if ($validation !== false) {
+				foreach($validation->errors() as $err) {
+					echo "<p class=\"err-msg\">$err </p>";
+				}
 			}
 		}
 		$this->view('includes/header');
 		$this->view('profile/upload');
 	}
 
-	public function me() {
-	
+	private function validate_form() {
+		$validate = new Validate();
+		$validate->check($_POST, array(
+			'title' => array(
+				'required' => true,
+				'max' => 32
+			),
+			'description' => array(
+				'required' => true
+			)
+		));
+		if ($validate)
+			return ($validate);
+		return (false);
 	}
+
 }
 
 ?>

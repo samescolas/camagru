@@ -33,7 +33,9 @@ class Upload extends Controller {
 				}
 			}
 		}
-		$this->view('includes/header');
+		$this->view('includes/header', array(
+			'stylesheets' => ('header')
+		));
 		$this->view('profile/upload');
 	}
 

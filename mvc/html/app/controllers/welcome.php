@@ -28,7 +28,7 @@ class Welcome extends Controller {
 				}
 			}
 		}
-		$this->view('includes/header');
+		$this->view('includes/header', array('stylesheets' => array('header')));
 		$this->view('home/welcome', array( 
 			'token' => Session::get(Config::get('session/token_name')),
 			'username' => Input::get('username'),

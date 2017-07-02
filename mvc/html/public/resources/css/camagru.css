@@ -4,3 +4,7 @@ canvas {
 
 video {
 }
+
+#fileToUpload {
+	visibility: hidden;
+}

@@ -17,12 +17,14 @@
   var video = null;
   var canvas = null;
   var photo = null;
+  var target = null;
   var startbutton = null;
 
   function startup() {
     video = document.getElementById('video');
     canvas = document.getElementById('canvas');
     photo = document.getElementById('photo');
+	target = document.getElementById('target');
     startbutton = document.getElementById('startbutton');
 
     navigator.getMedia = ( navigator.getUserMedia ||
@@ -87,6 +89,7 @@
     var data = canvas.toDataURL('image/png');
     photo.setAttribute('src', data);
   }
+
   
   // Capture a photo by fetching the current contents of the video
   // and drawing it into a canvas, then converting that to a PNG
@@ -103,6 +106,7 @@
     
       var data = canvas.toDataURL('image/png');
       photo.setAttribute('src', data);
+	  target.innerHTML += "<img src=\"" + data + "\"><br/>";
     } else {
       clearphoto();
     }

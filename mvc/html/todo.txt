@@ -1,5 +1,6 @@
 fix sendmail configuration
 server config script
-	a2enmod rewrite
-	apt-get install sendmail-bin
+	cmd -- a2enmod rewrite
+	cmd -- apt-get install sendmail-bin
+	php.ini -- file_uploads = On
 

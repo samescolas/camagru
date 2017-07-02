@@ -3,6 +3,7 @@
 session_start();
 
 $GLOBALS['config'] = array(
+	'max_file_size' => 500000,
 	'mysql' => array(
 		'host' => 'localhost',
 		'username' => 'phpmyadmin',

@@ -10,7 +10,7 @@ class Input {
 				return ((!empty($_GET)) ? true : false);
 				break ;
 			case 'file':
-				return ((!empty($_FILE)) ? true : false);
+				return ((!empty($_FILES)) ? true : false);
 				break ;
 			default:
 				return (false);
@@ -29,8 +29,8 @@ class Input {
 					return ($_GET[$item]);
 				break ;
 			case 'file':
-				if (iisset($_FILE[$item]))
-						return ($FILE[$item]);
+				if (iisset($_FILES[$item]))
+						return ($FILES[$item]);
 		}
 		return ("");
 	}

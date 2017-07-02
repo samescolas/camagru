@@ -37,7 +37,7 @@ class Image {
 
 	public function getLikes() {
 		if ($this->likes < 0)
-			$this->likes = $this->_db->get('likes', array('image_id', '=', $this->imageId))->count());
+			$this->likes = $this->_db->get('likes', array('image_id', '=', $this->imageId))->count();
 		return ($this->likes);
 	}
 
@@ -59,7 +59,7 @@ class Image {
 			'description' => $this->description
 		));
 		if ($q) {
-			$this->imageId = $this->_db->get('images', array('location', '=', $this->_filepath))->first->id;
+			$this->imageId = $this->_db->get('images', array('location', '=', $this->_filepath))->first()->id;
 		} else {
 			throw new Exception('Something went wrong.');
 		}

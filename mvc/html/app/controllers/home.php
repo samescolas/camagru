@@ -10,7 +10,7 @@ class Home extends Controller {
 		
 		if ($user->isLoggedIn()) {
 			// load content
-			Redirect::to('profile/me');
+			Redirect::to('profile');
 		} else {
 			if (!Session::exists(Config::get('session/token_name')))
 				Token::generate();

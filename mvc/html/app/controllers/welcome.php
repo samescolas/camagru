@@ -6,6 +6,7 @@ class Welcome extends Controller {
 
 	public function index($action) {
 		echo Session::flash('welcome');
+		echo Session::flash('probs');
 		$user = $this->model('User');
 		if ($user->isLoggedIn())
 			Redirect::to('home');
@@ -37,8 +38,10 @@ class Welcome extends Controller {
 	private function loginUser(User $user) {
 		$remember = Input::get('remember') === 'on' ? true : false;
 		$login = $user->login(Input::get('username'), Input::get('password'), $remember);
-		if (!$login)
-			Redirect::to('home');
+		if (!$login) {
+			Session::flash('probs', 'Invalid login credentials');
+			Redirect::to('welcome');
+		}
 	}
 
 	private function registerUser(User $user) {

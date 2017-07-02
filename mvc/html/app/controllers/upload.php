@@ -1,12 +1,12 @@
 <?php
 
-class Profile extends Controller {
+class Upload extends Controller {
 	 private $_user = null;
 
 	 public function __construct() {
 		$this->_user = $this->model('User');
 		$this->_user->shield();
-		$this->view('includes/header');
+		echo "upload!";
 	 }
 
 	 public function index($username) {

@@ -13,7 +13,7 @@ class Validate {
 	public function check($source, $items = array()) {
 		foreach ($items as $item => $rules) {
 			foreach ($rules as $rule => $rule_value) {
-				if ($rule == 'required' && $rule_value && !isset($source[$item])) {
+				if ($rule == 'required' && $rule_value === true && empty($source[$item])) {
 					$this->addError("$item is required");
 				} else if (isset($source[$item])) {
 					$value = $source[$item];

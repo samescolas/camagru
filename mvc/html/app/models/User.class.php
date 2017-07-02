@@ -64,6 +64,11 @@ class User {
 		}
 	}
 
+	public function shield() {
+		if (!$this->isLoggedIn())
+			Redirect::to('home');
+	}
+
 	public function update($fields = array(), $id = null) {
 		/* If no user specified, use current. */
 		if (!$id && $this->isLoggedIn()) {

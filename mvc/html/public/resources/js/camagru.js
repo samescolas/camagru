@@ -90,6 +90,18 @@
     photo.setAttribute('src', data);
   }
 
+  function sendpicture(data) {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("target").innerHTML = this.responseText;
+			}
+		};
+		xhttp.open("POST", "../capture" , true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.send("image=" + data);
+  }
+
   
   // Capture a photo by fetching the current contents of the video
   // and drawing it into a canvas, then converting that to a PNG
@@ -106,7 +118,8 @@
     
       var data = canvas.toDataURL('image/png');
       photo.setAttribute('src', data);
-	  target.innerHTML += "<img src=\"" + data + "\"><br/>";
+	  sendpicture(data);
+	  //target.innerHTML += "<img src=\"" + data + "\"><br/>";
     } else {
       clearphoto();
     }

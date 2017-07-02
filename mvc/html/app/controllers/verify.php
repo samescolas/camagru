@@ -1,6 +1,7 @@
 <?php
 
-require_once __DIR__ . '/../init.php';
+if (!class_exists('Controller'))
+	require __DIR__ . '/../init.php';
 
 class Verify extends Controller {
 	

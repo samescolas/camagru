@@ -65,8 +65,10 @@ class User {
 	}
 
 	public function shield() {
-		if (!$this->isLoggedIn())
+		if (!$this->isLoggedIn()) {
+			Session::flash('welcome', 'Please log in first!');
 			Redirect::to('home');
+		}
 	}
 
 	public function update($fields = array(), $id = null) {

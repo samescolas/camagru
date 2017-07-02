@@ -21,6 +21,7 @@ class Upload extends Controller {
 				die($e->getMessage());
 			}
 		}
+		$this->view('includes/header');
 		$this->view('profile/upload');
 	}
 

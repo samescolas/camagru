@@ -1,4 +1,4 @@
-<form action="login" method="post" />
+<form action="welcome/login" method="post" />
 	<div class="field">
 		<label for="username">Username</label>
 		<input type="text" name="username" id="username" value="<?=$data['username']?>" autocomplete="off" />
@@ -19,7 +19,7 @@
 	<input type="submit" value="Login" />
 </form>
 
-<form action="register" method="post">
+<form action="welcome/register" method="post">
 	<div class="field">
 		<label for="username">Username</label>
 		<input type="text" name="username" id="username" value="<?=$data['username']?>" autocomplete="off" />

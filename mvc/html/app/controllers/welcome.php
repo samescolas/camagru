@@ -4,14 +4,14 @@ require_once __DIR__ . '/../init.php';
 
 class Welcome extends Controller {
 
-	public function index($action) {
+	public function index($action = '') {
 		echo Session::flash('welcome');
 		echo Session::flash('probs');
 		$user = $this->model('User');
 		if ($user->isLoggedIn())
 			Redirect::to('home');
 
-		if (Input::exists()) {
+		if ($action !== '' && Input::exists()) {
 			$validation = $this->validate_form($action);
 			if ($validation !== false && $validation->passed()) {
 				if ($action == 'register') {
@@ -28,6 +28,7 @@ class Welcome extends Controller {
 				}
 			}
 		}
+		$this->view('includes/header');
 		$this->view('home/welcome', array( 
 			'token' => Session::get(Config::get('session/token_name')),
 			'username' => Input::get('username'),

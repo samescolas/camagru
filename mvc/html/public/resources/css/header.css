@@ -1,3 +1,43 @@
-body {
-	background-color: steelblue;
+* {
+	margin: 0;
+	padding: 0;
 }
+
+body {
+	font-size: 100%;
+}
+
+
+div#header {
+	display: -webkit-flex;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	-webkit-flex-direction: row;
+	margin: 0 auto;
+	padding: 2vh 3vw;
+	float: left;
+	width: 94vw;
+	height: 10vh;
+	background-color: steelblue;
+	border-radius: 0 0 5% 5%;
+	border-bottom: 1.8px blue solid;
+}
+
+#header img {
+	width: 12vmin;
+	float: left;
+	padding-right: 1.5vw;
+}
+
+#header ul, #header li {
+	display: inline-block;
+}
+
+#header ul {
+	padding-top: 0.5vh;
+	font-family: "courier-new", sans-serif;
+	font-size: 2vmin;
+	color: blue;
+}
+

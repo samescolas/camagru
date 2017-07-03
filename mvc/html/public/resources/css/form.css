@@ -6,7 +6,7 @@ form {
 	font-family: sans-serif;
 }
 
-#username, #email, #password, #password-again {
+#username, #email, #password, #password_again {
 	margin-top: 20px;
 	width: 25vw;
 	height: 4vmin;
@@ -15,4 +15,13 @@ form {
 
 #remember {
 	margin: 15px 0;
+}
+
+h2 {
+	font-weight: bold;
+	font-size: 300%;
+	color: #323232;
+	text-align: center;
+	position: relative;
+	top: 7vh;
 }

@@ -1,4 +1,5 @@
-<form action="welcome/login" method="post" />
+<h2>Login</h2>
+<form action="login" method="post" />
 		<input type="text" name="username" placeholder="Username" id="username" value="<?=$data['username']?>" autocomplete="off" />
 		<br />
 		<input type="password" name="password" placeholder="Password" id="password" autocomplete="off" />

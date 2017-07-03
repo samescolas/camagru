@@ -19,6 +19,6 @@
 			<a href="#"><li>Update Profile</li></a>
 			<a href="upload"><li>Upload Photo</li></a>
 			<a href="#"><li>Browse</li></a>
-			<a href="welcome"><li>Logout</li></a>
+			<a href="logout"><li>Logout</li></a>
 		</ul>
 	</div>

@@ -3,34 +3,43 @@
 require_once __DIR__ . '/../init.php';
 
 class Welcome extends Controller {
+	private $_user;
+
+	public function __construct() {
+		$this->_user = $this->model('User');
+		$this->view('includes/header', array(
+			'stylesheets' => array('header', 'welcome'),
+			'scripts' => array('flash')
+		));
+	}
 
 	public function index($action = '') {
-		echo "<p class=\"flash\">" . Session::flash('welcome') . "</p>";
-		echo "<p class=\"flash\">" . Session::flash('probs') . "</p>";
-		$user = $this->model('User');
-		if ($user->isLoggedIn())
+		if (Session::exists('welcome') || Session::exists('bad')) {
+			echo "<div id=\"flash-container\">";
+			if (Session::exists('welcome'))
+				echo "<p class=\"flash\">" . Session::flash('welcome') . "</p>";
+			if (Session::exists('bad'))
+				echo "<p class=\"flash\">" . Session::flash('bad') . "</p>";
+			echo "</div>";
+		}
+		if ($this->_user->isLoggedIn())
 			Redirect::to('home');
 
 		if ($action !== '' && Input::exists()) {
 			$validation = $this->validate_form($action);
 			if ($validation !== false && $validation->passed()) {
 				if ($action == 'register') {
-					$this->registerUser($user);
+					$this->registerUser($this->_user);
 					Session::flash('welcome', 'You have successfully registered!');
 				}
 				else if ($action == 'login') {
-					$this->loginUser($user);
+					$this->loginUser();
 				}
 				Redirect::to('home');
 			} else if($validation !== false) {
-				foreach ($validation->errors() as $err) {
-					echo "<p class=\"error\">$err </p>";
-				}
+				$validation->displayErrors();
 			}
 		}
-		$this->view('includes/header', array(
-			'stylesheets' => array('header', 'welcome')
-		));
 		$this->view('home/welcome', array( 
 			'token' => Session::get(Config::get('session/token_name')),
 			'username' => Input::get('username'),
@@ -38,11 +47,11 @@ class Welcome extends Controller {
 		));
 	}
 
-	private function loginUser(User $user) {
+	private function loginUser() {
 		$remember = Input::get('remember') === 'on' ? true : false;
-		$login = $user->login(Input::get('username'), Input::get('password'), $remember);
+		$login = $this->_user->login(Input::get('username'), Input::get('password'), $remember);
 		if (!$login) {
-			Session::flash('probs', 'Invalid login credentials');
+			Session::flash('bad', 'Invalid login credentials');
 			Redirect::to('welcome');
 		}
 	}
@@ -86,12 +95,15 @@ class Welcome extends Controller {
 			$validate->check($_POST, array(
 				'username' => array(
 					'required' => true,
+					'nospace' => true,
 					'min' => 8,
 					'max' => 32,
+					'alnum' => true,
 					'unique' => 'users'
 				),
 				'email' => array(
 					'name' => 'Email Address',
+					'nospace' => true,
 					'required' => true,
 					'filter' => FILTER_SANITIZE_EMAIL,
 					'filter' => FILTER_VALIDATE_EMAIL,
@@ -100,7 +112,9 @@ class Welcome extends Controller {
 				),
 				'password' => array(
 					'required' => true,
-					'min' => 8
+					'min' => 8,
+					'regex' => '/\d+/',
+					'regex' => '/\W+/'
 				),
 				'password_again' => array(
 					'required' => true,

@@ -49,12 +49,16 @@ class User {
 	}
 
 	public function find($user = null) {
-		$tbls = 'users u left join shadow s on s.user_id = u.id';
 		if ($user) {
+		$fields = "SELECT u.id, u.username, u.email, u.dt_joined, s.passwd, s.salt, v.token";
+		$tbls = 
+			"users u
+			LEFT JOIN shadow s ON s.user_id = u.id
+			LEFT JOIN email_verification v ON v.user_id = u.id";		
 			if (preg_match('/^\d+$/', $user)) {
-					$data = $this->_db->get($tbls, array('s.user_id', '=', $user));
+				$data = $this->_db->action($fields, $tbls, array('u.id', '=', $user));
 			} else {
-				$data = $this->_db->get($tbls, array('u.username', '=', $user));
+				$data = $this->_db->action($fields, $tbls, array('u.username', '=', $user));
 			}
 
 			if ($data && $data->count()) {
@@ -68,7 +72,16 @@ class User {
 		if (!$this->isLoggedIn()) {
 			Session::flash('welcome', 'Please log in first!');
 			Redirect::to('home');
+		} else if (!$this->isVerified()) {
+			Redirect::to('email');
 		}
+	}
+
+	public function isVerified() {
+		if (!$this->isLoggedIn() || $this->data()->token) {
+			return (false);
+		}
+		return (true);
 	}
 
 	public function update($fields = array(), $id = null) {
@@ -89,7 +102,6 @@ class User {
 
 	public function validateEmail($fields) {
 		$token = Token::create();
-		//$id = $this->_db->get('users', array('email', '=', $fields['email']))->first()->id;
 		$this->_db->insert('email_verification', array(
 			'user_id' => $this->data()->user_id,
 			'token' => $token
@@ -126,7 +138,7 @@ class User {
 
 			if ($user) {
 				if ($this->data()->passwd === Hash::make($password, $this->data()->salt)) {
-					Session::put($this->_sessionName, $this->data()->user_id);
+					Session::put($this->_sessionName, $this->data()->id);
 		
 					if ($remember) {
 						$hash = Hash::unique();

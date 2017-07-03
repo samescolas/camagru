@@ -3,10 +3,12 @@
 	<title>Camagru</title>
 	<base href="../">
 	<?php 
-		foreach($data['scripts'] as $s)
-		echo "\t\t<script src=\"resources/js/$s.js\"></script>\n";
-		foreach($data['stylesheets'] as $s)
-		echo "\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"resources/css/$s.css\">\n";
+		if (isset($data['scripts']))
+			foreach($data['scripts'] as $s)
+				echo "\t\t<script src=\"resources/js/$s.js\"></script>\n";
+		if (isset($data['stylesheets']))
+			foreach($data['stylesheets'] as $s)
+				echo "\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"resources/css/$s.css\">\n";
 	?>
 </head>
 <body>

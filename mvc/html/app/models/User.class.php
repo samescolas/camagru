@@ -66,6 +66,7 @@ class User {
 				return (true);
 			}
 		}
+		return (false);
 	}
 
 	public function shield() {
@@ -130,12 +131,12 @@ class User {
 	}
 
 	public function login($username = null, $password = null, $remember = false) {
-		$user = $this->find($username);
 
 		if (!$username && !$password && $this->exists()) {
 			Session::put($this->_sessionName, $this->data()->user_id);
 		} else {
 
+			$user = $this->find($username);
 			if ($user) {
 				if ($this->data()->passwd === Hash::make($password, $this->data()->salt)) {
 					Session::put($this->_sessionName, $this->data()->id);

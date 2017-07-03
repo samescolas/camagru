@@ -1,0 +1,18 @@
+form {
+	position: relative;
+	top: 14vh;
+	text-align: center;
+	margin: 0 auto;
+	font-family: sans-serif;
+}
+
+#username, #email, #password, #password-again {
+	margin-top: 20px;
+	width: 25vw;
+	height: 4vmin;
+	border-radius: 3px;
+}
+
+#remember {
+	margin: 15px 0;
+}

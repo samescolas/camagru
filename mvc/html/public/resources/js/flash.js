@@ -22,8 +22,8 @@
 			return ;
 		}
 		var curr = parseFloat(window.getComputedStyle(el).getPropertyValue("opacity"));
-		if (curr > 0.1) {
-			el.style.opacity = (curr - 0.1);
+		if (curr > 0.4) {
+			el.style.opacity = (curr - 0.2);
 		} else  {
 			el.remove();
 		}

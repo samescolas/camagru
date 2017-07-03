@@ -46,6 +46,7 @@ class User {
 		);
 		$this->setPass($passwd_fields);
 		$this->find($id);
+		Cookie::put(Config::get('remember/stamp'), '1', Config::get('remember/cookie_expiry'));
 	}
 
 	public function find($user = null) {

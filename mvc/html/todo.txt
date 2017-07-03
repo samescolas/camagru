@@ -1,5 +1,5 @@
-block users from content until verified email
 fix sendmail configuration
+add footer
 server config script
 	cmd -- a2enmod rewrite
 	cmd -- apt-get install sendmail-bin

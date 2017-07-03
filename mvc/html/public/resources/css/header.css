@@ -50,16 +50,15 @@ div#header {
 	color: blue;
 }
 
-#flash-container {
+.flash, .flash-container {
 	background-color: #42DD42;
 }
 
-#error-container {
+.error, .error-close {
 	background-color: #DD4242;
 }
 
 #flash-container, #error-container {
-	opacity: 0.9;
 	width: 100%;
 	position: absolute;
 	z-index: 1000;
@@ -75,6 +74,7 @@ div#header {
 }
 
 .flash, .error, .error-close, .flash-close {
+	opacity: 0.9;
 	height: 27px;
 	padding-top: 2px;
 	border-bottom: 0.5px solid darkred;
@@ -84,5 +84,6 @@ div#header {
 }
 
 #flash-container .conatainer:hover, #error-container .container:hover {
+	opacity: 0.9;
 	cursor: pointer;
 }

@@ -4,9 +4,9 @@
 }
 
 body {
-	font-size: 100%;
+	font-size: 18px;
+	background-color: lavender;
 }
-
 
 div#header {
 	display: -webkit-flex;
@@ -15,19 +15,18 @@ div#header {
 	justify-content: center;
 	-webkit-flex-direction: row;
 	margin: 0 auto;
-	padding: 2vh 3vw;
+	padding: 2vh;
 	float: left;
-	width: 94vw;
+	width: 96vw;
 	height: 10vh;
-	background-color: steelblue;
+	background-color: #4242DD;;
 	border-radius: 0 0 5% 5%;
-	border-bottom: 1.8px blue solid;
 }
 
 #header img {
-	width: 12vmin;
+	width: 18vmin;
 	float: left;
-	padding-right: 1.5vw;
+	padding-right: 2.5vw;
 }
 
 #header ul, #header li {
@@ -38,6 +37,31 @@ div#header {
 	padding-top: 0.5vh;
 	font-family: "courier-new", sans-serif;
 	font-size: 2vmin;
+}
+
+
+#header li {
+	color: white;
+	padding: 1vw;
+}
+
+#header li:hover {
+	background-color: #e3e3e3;
 	color: blue;
 }
 
+.flash {
+	width: 100%;
+	position: absolute;
+	z-index: 1000;
+	background-color: #42DD42;
+	opacity: 0.5;
+}
+
+.error {
+	width: 100%;
+	position: fixed;
+	z-index: 1000;
+	background-color: #DD4242;
+	opacity: 0.5;
+}

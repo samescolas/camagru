@@ -5,8 +5,8 @@ require_once __DIR__ . '/../init.php';
 class Welcome extends Controller {
 
 	public function index($action = '') {
-		echo Session::flash('welcome');
-		echo Session::flash('probs');
+		echo "<p class=\"flash\">" . Session::flash('welcome') . "</p>";
+		echo "<p class=\"flash\">" . Session::flash('probs') . "</p>";
 		$user = $this->model('User');
 		if ($user->isLoggedIn())
 			Redirect::to('home');
@@ -24,11 +24,13 @@ class Welcome extends Controller {
 				Redirect::to('home');
 			} else if($validation !== false) {
 				foreach ($validation->errors() as $err) {
-					echo "$err <br />";
+					echo "<p class=\"error\">$err </p>";
 				}
 			}
 		}
-		$this->view('includes/header', array('stylesheets' => array('header')));
+		$this->view('includes/header', array(
+			'stylesheets' => array('header', 'welcome')
+		));
 		$this->view('home/welcome', array( 
 			'token' => Session::get(Config::get('session/token_name')),
 			'username' => Input::get('username'),

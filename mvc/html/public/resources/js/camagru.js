@@ -97,9 +97,9 @@
 				document.getElementById("target").innerHTML = this.responseText;
 			}
 		};
-		xhttp.open("POST", "../capture" , true);
+		xhttp.open("POST", "../capture", true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xhttp.send("image=" + data);
+		xhttp.send("data=" + data);
   }
 
   

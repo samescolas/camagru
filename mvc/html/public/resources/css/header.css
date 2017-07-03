@@ -50,18 +50,39 @@ div#header {
 	color: blue;
 }
 
-.flash {
+#flash-container {
+	background-color: #42DD42;
+}
+
+#error-container {
+	background-color: #DD4242;
+}
+
+#flash-container, #error-container {
+	opacity: 0.9;
 	width: 100%;
 	position: absolute;
 	z-index: 1000;
-	background-color: #42DD42;
-	opacity: 0.5;
 }
 
-.error {
-	width: 100%;
-	position: fixed;
-	z-index: 1000;
-	background-color: #DD4242;
-	opacity: 0.5;
+.flash, .error {
+	text-align: center;
+	width: 97%;
+}
+
+.error-close, .flash-close {
+	width: 3%;
+}
+
+.flash, .error, .error-close, .flash-close {
+	height: 27px;
+	padding-top: 2px;
+	border-bottom: 0.5px solid darkred;
+	display: inline-block;
+	position: relative;
+	color: white;
+}
+
+#flash-container .conatainer:hover, #error-container .container:hover {
+	cursor: pointer;
 }

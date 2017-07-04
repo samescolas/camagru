@@ -12,10 +12,10 @@ class Register extends Controller {
 			'stylesheets' => array('header', 'form'),
 			'scripts' => array('flash'),
 			'navs' => array(
-				'Home' => 'home',
-				'Login' => 'login',
 				'Register' => 'register',
-				'Browse' => 'browse'
+				'Browse' => 'browse',
+				'Login' => 'login',
+				'Home' => 'home'
 			)
 		));
 	}

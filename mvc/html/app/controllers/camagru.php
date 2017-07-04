@@ -10,11 +10,11 @@ class Camagru extends Controller {
 			'scripts' => array('camagru'),
 			'stylesheets' => array('header', 'camagru'),
 			'navs' => array(
-				'Home' => 'home',
-				'Update Profile' => 'update',
-				'Upload Photo' => 'upload',
+				'Logout' => 'logout',
 				'Browse' => 'browse',
-				'Logout' => 'logout'
+				'Upload Photo' => 'upload',
+				'Update Profile' => 'update',
+				'Home' => 'home'
 			)
 		));
 	}

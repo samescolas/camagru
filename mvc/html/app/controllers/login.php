@@ -12,10 +12,10 @@ class Login extends Controller {
 			'stylesheets' => array('header', 'form'),
 			'scripts' => array('flash'),
 			'navs' => array(
-				'Home' => 'home',
-				'Login' => 'login',
+				'Browse' => 'browse',
 				'Register' => 'register',
-				'Browse' => 'browse'
+				'Login' => 'login',
+				'Home' => 'home'
 			)
 		));
 	}

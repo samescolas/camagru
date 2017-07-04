@@ -34,7 +34,14 @@ class Upload extends Controller {
 			}
 		}
 		$this->view('includes/header', array(
-			'stylesheets' => array('header')
+			'stylesheets' => array('header'),
+			'navs' => array(
+				'Home' => 'home',
+				'Update Profile' => 'update',
+				'Upload Photo' => 'upload',
+				'Browse' => 'browse',
+				'Logout' => 'logout'
+			)
 		));
 		$this->view('profile/upload');
 	}

@@ -43,8 +43,12 @@ class Register extends Controller {
 			}
 		}
 
+		if (Session::get(Config::get('session/token_name')) !== null)
+			$token = Session::get(Config::get('session/token_name'));
+		else
+			$token = Token::generate();
 		$this->view('forms/register', array( 
-			'token' => Session::get(Config::get('session/token_name')),
+			'token' => $token,
 			'username' => Input::get('username'),
 			'email' => Input::get('email')
 		));
@@ -70,7 +74,7 @@ class Register extends Controller {
 
 	private function validate_form() {
 		if (!Token::check(Input::get('token'))) {
-			//echo 'token probs';
+			echo 'token probs';
 			return (false);
 		}
 

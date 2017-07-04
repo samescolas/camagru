@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div id="header">
-		<h1 id="logo">Camagru</h1>
+		<a href="home"><h1 id="logo">Camagru</h1></a>
 		<div class="wrapper">
 			<ul>
 				<?php

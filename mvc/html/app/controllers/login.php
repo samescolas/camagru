@@ -41,8 +41,13 @@ class Login extends Controller {
 				$validation->displayErrors();
 			}
 		}
+		if (Session::exists(Config::get('session/token_name')))
+			$token  = Session::get(Config::get('session/token_name'));
+		else
+			$token = Token::generate();
 		$this->view('forms/login', array( 
-			'token' => Session::get(Config::get('session/token_name')),
+			//'token' => Session::get(Config::get('session/token_name')),
+			'token' => $token,
 			'username' => Input::get('username'),
 			'email' => Input::get('email')
 		));
@@ -59,7 +64,7 @@ class Login extends Controller {
 
 	private function validate_form() {
 		if (!Token::check(Input::get('token'))) {
-			//echo 'token probs';
+			echo 'token probs';
 			return (false);
 		}
 

@@ -10,17 +10,18 @@
 			foreach($data['stylesheets'] as $s)
 				echo "\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"resources/css/$s.css\">\n";
 	?>
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 </head>
 <body>
 	<div id="header">
-		<img src="resources/imgs/camagru.png" />
-		<ul>
-			<a class="active" href="#"><li>Home</li></a>
-			<a href="login"><li>Login</li></a>
-			<a href="register"><li>Register</li></a>
-			<a href="#"><li>Update Profile</li></a>
-			<a href="upload"><li>Upload Photo</li></a>
-			<a href="#"><li>Browse</li></a>
-			<a href="logout"><li>Logout</li></a>
-		</ul>
+		<h1 id="logo">Camagru</h1>
+		<div class="wrapper">
+			<ul>
+				<?php
+					foreach($data['navs'] as $label => $link) {
+						echo "<li><a href=\"$link\">$label</a></li>";
+					}
+				?>
+			</ul>
+		</div>
 	</div>

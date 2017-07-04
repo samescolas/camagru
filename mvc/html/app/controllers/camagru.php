@@ -8,7 +8,14 @@ class Camagru extends Controller {
 		$this->_user->shield();
 		$this->view('includes/header', array(
 			'scripts' => array('camagru'),
-			'stylesheets' => array('header', 'camagru')
+			'stylesheets' => array('header', 'camagru'),
+			'navs' => array(
+				'Home' => 'home',
+				'Update Profile' => 'update',
+				'Upload Photo' => 'upload',
+				'Browse' => 'browse',
+				'Logout' => 'logout'
+			)
 		));
 	}
 

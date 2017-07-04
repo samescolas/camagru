@@ -10,7 +10,13 @@ class Login extends Controller {
 		$this->_user = $this->model('User');
 		$this->view('includes/header', array(
 			'stylesheets' => array('header', 'form'),
-			'scripts' => array('flash')
+			'scripts' => array('flash'),
+			'navs' => array(
+				'Home' => 'home',
+				'Login' => 'login',
+				'Register' => 'register',
+				'Browse' => 'browse'
+			)
 		));
 	}
 
@@ -35,7 +41,7 @@ class Login extends Controller {
 				$validation->displayErrors();
 			}
 		}
-		$this->view('home/login', array( 
+		$this->view('forms/login', array( 
 			'token' => Session::get(Config::get('session/token_name')),
 			'username' => Input::get('username'),
 			'email' => Input::get('email')

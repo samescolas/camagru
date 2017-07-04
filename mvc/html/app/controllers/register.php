@@ -10,7 +10,13 @@ class Register extends Controller {
 		$this->_user = $this->model('User');
 		$this->view('includes/header', array(
 			'stylesheets' => array('header', 'form'),
-			'scripts' => array('flash')
+			'scripts' => array('flash'),
+			'navs' => array(
+				'Home' => 'home',
+				'Login' => 'login',
+				'Register' => 'register',
+				'Browse' => 'browse'
+			)
 		));
 	}
 
@@ -37,7 +43,7 @@ class Register extends Controller {
 			}
 		}
 
-		$this->view('home/register', array( 
+		$this->view('forms/register', array( 
 			'token' => Session::get(Config::get('session/token_name')),
 			'username' => Input::get('username'),
 			'email' => Input::get('email')

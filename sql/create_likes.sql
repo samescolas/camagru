@@ -1,9 +1,0 @@
-CREATE TABLE likes (
-	id INT NOT NULL AUTO_INCREMENT,
-	user_id INT NOT NULL,
-	img_id INT NOT NULL,
-	dt DATETIME NOT NULL DEFAULT NOW(),
-	PRIMARY KEY (id),
-	FOREIGN KEY (user_id) REFERENCES users(id),
-	FOREIGN KEY (img_id) REFERENCES imgs(id)
-);

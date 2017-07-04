@@ -9,7 +9,13 @@ body {
 }
 
 div#header {
+	display: -webkit-flex;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	-webkit-flex-direction: row;
 	margin: 0 auto;
+	padding: 2vh;
 	float: left;
 	width: 98%;
 	height: 10vh;
@@ -17,14 +23,8 @@ div#header {
 	border-radius: 0 0 5% 5%;
 }
 
-#header .wrapper {
-	background-color: red;
-	height: 100%;
-	width: 82vw;
-}
-
 #header h1 {
-	width: 11vw;
+	width: 18vmin;
 	float: left;
 	padding-right: 3.5vw;
 	font-family: 'Lobster', cursive, sans-serif;
@@ -34,33 +34,34 @@ div#header {
 	color: lavender;
 }
 
+#header ul, #header li {
+	font-family: 'Lobster', cursive, sans-serif;
+	text-shadow: 2px 2px #3232DD;
+	display: inline-block;
+}
+
 #header ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	height: 100%;
-	overflow: hidden;
-	background-color: #333;
+	padding-top: 0.5vh;
+	font-family: "courier-new", sans-serif;
+	font-size: 2vmin;
+	height: 12vmin;
 }
 
-li {
-	float: left;
-	width: 11vw;
-}
 
-li a {
-	display: block;
+#header li {
 	color: white;
-	text-align: center;
-	text-decoration: none;
+	padding: 1vw;
+	height: 100%;
 }
 
-li a:hover:not(.active) {
-	background-color: #111;
+#header a.active {
+	background-color: #a14271;
+	color: white;
 }
 
-a.active {
-	background-color: #4242DD;;
+#header li a:hover:not(.active) {
+	background-color: #e3e3e3;
+	color: blue;
 }
 
 .flash, .flash-container {

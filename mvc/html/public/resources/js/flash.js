@@ -1,9 +1,11 @@
 
 (function() {
 
+	var container = document.getElementById("error-container");
 	var errors = document.getElementsByClassName("error");
 
 	function addListeners() {
+		//container.style.display('none');
 		for (var i=0; i<errors.length; i++) {
 			console.log("Adding listener to " + errors[i]);
 			errors[i].parentNode.addEventListener("click", function() {
@@ -22,14 +24,14 @@
 			return ;
 		}
 		var curr = parseFloat(window.getComputedStyle(el).getPropertyValue("opacity"));
-		if (curr > 0.4) {
-			el.style.opacity = (curr - 0.2);
+		if (curr > 0.1) {
+			el.style.opacity = (curr - 0.02);
 		} else  {
 			el.remove();
 		}
 	}
 
-	setInterval(function() { fadeOut(); }, 500);
+	setInterval(function() { fadeOut(); }, 50);
 
 	window.addEventListener("load", addListeners);
 })();

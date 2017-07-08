@@ -52,6 +52,7 @@ class Register extends Controller {
 			'username' => Input::get('username'),
 			'email' => Input::get('email')
 		));
+		$this->view('includes/footer');
 	}
 
 	private function registerUser(User $user) {

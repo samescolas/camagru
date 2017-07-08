@@ -10,7 +10,7 @@ class Email extends Controller {
 			Session::flash('welcome', 'Please log in!');
 			Redirect::to('home');
 		}
-		//$this->view('');
+		$this->view('includes/footer');
 	}
 
 	public function index($username = '') {

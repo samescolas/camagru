@@ -1,3 +1,7 @@
+.main {
+	height: 80vh;
+}
+
 form {
 	position: relative;
 	top: 14vh;

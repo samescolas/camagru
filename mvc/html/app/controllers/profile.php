@@ -18,6 +18,7 @@ class Profile extends Controller {
 				'Home' => 'home'
 			)
 		));
+		$this->view('includes/footer');
 	}
 
 	public function index($username = '') {

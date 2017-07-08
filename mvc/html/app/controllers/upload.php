@@ -44,6 +44,7 @@ class Upload extends Controller {
 			)
 		));
 		$this->view('profile/upload');
+		$htis->view('includes/footer');
 	}
 
 	private function validate_form() {

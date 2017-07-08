@@ -51,6 +51,7 @@ class Login extends Controller {
 			'username' => Input::get('username'),
 			'email' => Input::get('email')
 		));
+		$this->view('includes/footer');
 	}
 
 	private function loginUser() {

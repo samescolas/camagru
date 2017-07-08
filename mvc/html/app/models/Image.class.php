@@ -17,7 +17,7 @@ class Image {
 		$this->_db = Database::getInstance();
 		$this->userId = isset($data['user_id']) ? $data['user_id'] : '';
 		$this->_saveDir= 'resources/uploads/' . $this->userId . '/';
-		$this->_filepath = $this->_saveDir . Token::create() . '.png';
+		$this->_filepath = $this->_saveDir . Token::create() . '.pnd';
 		$this->title = isset($data['title']) ? $data['title'] : '';
 		$this->description = isset($data['description']) ? $data['description'] : '';
 		if (Input::exists('file')) {
@@ -25,17 +25,12 @@ class Image {
 			if ($this->size !== false)
 				$this->image = file_get_contents($_FILES['fileToUpload']['tmp_name']);
 		} else if ( Input::exists()) {
-			$encoded = Input::get('data');
-			$decoded = "";
-			$limit = ceil(strlen($encoded)/256);
-			for ($i=0; $i < $limit; $i++) {
-				$decoded = $decoded . base64_decode(substr($encoded, $i*256,256));
-			}
+			$decoded = base64_decode(Input::get('data'));
 			$this->image = $decoded;
-			//$this->image = base64_decode(Input::get('data'));
 			if (!file_exists($this->_saveDir))
 				mkdir($this->_saveDir);
-			file_put_contents($this->_filepath, $this->image);
+			//file_put_contents($this->_filepath, $this->image);
+			$this->store();
 		}
 	}
 
@@ -66,7 +61,7 @@ class Image {
 		$q = $this->_db->insert('images', array(
 			'user_id' => $this->userId,
 			'location' => $this->_filepath,
-			'image_type' => $this->size['mime'],
+			'image_type' => 'image/png',//$this->size['mime'],
 			'title' => $this->title,
 			'description' => $this->description
 		));

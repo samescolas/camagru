@@ -84,7 +84,7 @@ a.active {
 	width: 100%;
 	position: absolute;
 	z-index: 1000;
-	display: none;
+	/* display: none; */
 }
 
 .flash, .error {

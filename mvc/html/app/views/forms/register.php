@@ -1,6 +1,6 @@
 <h2>Register</h2>
 <form action="register" method="post">
-		<input type="text" name="username" placeholder="username" id="username" value="<?=$data['username']?>" autocomplete="off" />
+		<input autofocus="autofocus" type="text" name="username" placeholder="username" id="username" value="<?=$data['username']?>" autocomplete="off" />
 		<br />
 	
 		<input type="email" name="email" placeholder="Email address" id="email" value="<?=$data['email']?>" autocomplete="off" />

@@ -6,7 +6,6 @@
 		<br />
 		<input type="checkbox" name="remember" id="remember" value="on" />Remember me?
 		<br />
-	</div>
 
 	<input type="hidden" name="token" value="<?=$data['token'] ?>" />
 	<input type="submit" value="Login" />

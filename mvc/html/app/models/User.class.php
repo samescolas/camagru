@@ -89,7 +89,7 @@ class User {
 	public function update($fields = array(), $id = null) {
 		/* If no user specified, use current. */
 		if (!$id && $this->isLoggedIn()) {
-			$id = $this->data()->user_id;
+			$id = $this->data()->id;
 		}
 		if (!$this->_db->update('users', $id, $fields)) {
 			throw new Exception('There was a problem updating your shit.');
@@ -105,7 +105,7 @@ class User {
 	public function validateEmail($fields) {
 		$token = Token::create();
 		$this->_db->insert('email_verification', array(
-			'user_id' => $this->data()->user_id,
+			'user_id' => $this->data()->id,
 			'token' => $token
 		));
 		$this->sendValidationEmail($fields, $token);
@@ -122,7 +122,7 @@ class User {
 
 	private function sendValidationEmail($fields, $token = null) {
 		if (!$token) {
-			$this->_db->del('email_verification', array('user_id', '=', $this->data()->user_id));
+			$this->_db->del('email_verification', array('user_id', '=', $this->data()->id));
 			return $this->validateEmail($fields);
 		}
 		$link = "http://" . $_SERVER['SERVER_NAME'] . "/verify/" . $token . "/" . $fields['username'];
@@ -134,7 +134,7 @@ class User {
 	public function login($username = null, $password = null, $remember = false) {
 
 		if (!$username && !$password && $this->exists()) {
-			Session::put($this->_sessionName, $this->data()->user_id);
+			Session::put($this->_sessionName, $this->data()->id);
 		} else {
 
 			$user = $this->find($username);
@@ -144,11 +144,11 @@ class User {
 		
 					if ($remember) {
 						$hash = Hash::unique();
-						$hashCheck = $this->_db->get('sessions', array('user_id', '=', $this->data()->user_id));
+						$hashCheck = $this->_db->get('sessions', array('user_id', '=', $this->data()->id));
 						if (!$hashCheck->count()) {
 	
 							$this->_db->insert('sessions', array(
-								'user_id' =>$this->data()->user_id,
+								'user_id' =>$this->data()->id,
 								'hash' => $hash
 							));
 						} else {
@@ -166,7 +166,7 @@ class User {
 	public function logout() {
 		Session::delete($this->_sessionName);
 		Cookie::delete($this->_cookieName);
-		$this->_db->del('sessions', array('user_id', '=', $this->data()->user_id));
+		$this->_db->del('sessions', array('user_id', '=', $this->data()->id));
 	}
 
 	public function data() {

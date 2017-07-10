@@ -12,13 +12,14 @@ class Capture extends Controller {
 	}
 	
 	public function index($data = '') {
-		if (Input::exists()) {
+		if (Input::exists('file')) {
 			$image = $this->model('Image', array(
 				'title' => 'Screenshot 1',
 				'description' => 'Captured ' . date('Y-m-d H:m:s', time()),
 				'user_id' => $this->_user->data()->id
 			));
 			echo "created image!!";
+			$image->upload();
 			$image->display();
 				/*
 			$image = Input::get('data');

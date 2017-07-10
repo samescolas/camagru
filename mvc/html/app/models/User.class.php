@@ -79,6 +79,16 @@ class User {
 		}
 	}
 
+	public function getImages() {
+		if (!$this->data()->id) {
+			return (false);
+		}
+		$images = $this->_db->get('images', array('user_id', '=', $this->data()->id));
+		if ($images->count())
+			return ($images);
+		return (false);
+	}
+
 	public function isVerified() {
 		if (!$this->isLoggedIn() || $this->data()->token) {
 			return (false);

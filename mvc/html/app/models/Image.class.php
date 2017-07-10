@@ -17,22 +17,13 @@ class Image {
 		$this->_db = Database::getInstance();
 		$this->userId = isset($data['user_id']) ? $data['user_id'] : '';
 		$this->_saveDir= 'resources/uploads/' . $this->userId . '/';
-		$this->_filepath = $this->_saveDir . Token::create() . '.png';
+		$this->_filepath = isset($data['filepath']) ? $data['filepath'] : '';
 		$this->title = isset($data['title']) ? $data['title'] : '';
 		$this->description = isset($data['description']) ? $data['description'] : '';
 		if (Input::exists('file')) {
 			$this->size = getimagesize($_FILES['data']['tmp_name']);
 			if ($this->size !== false)
 				$this->image = file_get_contents($_FILES['data']['tmp_name']);
-		} else if ( Input::exists()) {
-	//		echo Input::get('data');
-		//	die();
-			$decoded = base64_decode(Input::get('data'));
-			$this->image = $decoded;
-			if (!file_exists($this->_saveDir))
-				mkdir($this->_saveDir);
-			//file_put_contents($this->_filepath, $this->image);
-			$this->store();
 		}
 	}
 
@@ -59,6 +50,7 @@ class Image {
 	public function store() {
 		if (!file_exists($this->_saveDir))
 			mkdir($this->_saveDir);
+		$this->_filepath = $this->_saveDir . Token::create() . '.png';
 		file_put_contents($this->_filepath, $this->image);
 		$q = $this->_db->insert('images', array(
 			'user_id' => $this->userId,

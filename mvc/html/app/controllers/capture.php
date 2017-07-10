@@ -18,16 +18,8 @@ class Capture extends Controller {
 				'description' => 'Captured ' . date('Y-m-d H:m:s', time()),
 				'user_id' => $this->_user->data()->id
 			));
-			echo "created image!!";
 			$image->upload();
 			$image->display();
-				/*
-			$image = Input::get('data');
-			$data = preg_replace('/^data:image\/\w+;base64,/i', '', $image);
-			echo $data;
-			//file_put_contents("../test_img.png", $data);
-			echo "I did it!";
-			*/
 		} else {
 			print_r($_POST);
 			print_r($_GET);

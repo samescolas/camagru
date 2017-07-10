@@ -5,7 +5,6 @@
 	var errors = document.getElementsByClassName("error");
 
 	function addListeners() {
-		//container.style.display('none');
 		for (var i=0; i<errors.length; i++) {
 			console.log("Adding listener to " + errors[i]);
 			errors[i].parentNode.addEventListener("click", function() {

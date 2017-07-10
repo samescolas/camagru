@@ -29,7 +29,8 @@
           	video.mozSrcObject = stream;
         	} else {
           	var vendorURL = window.URL || window.webkitURL;
-          	video.src = vendorURL.createObjectURL(stream);
+          	//video.src = vendorURL.createObjectURL(stream);
+			video.srcObject = stream;
         	}
         	video.play();
       	},
@@ -83,8 +84,14 @@
 				}
 			};
 			xhttp.open("POST", "../capture", true);
-			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhttp.send("data=" + rawData);
+			/* new stuff */
+			var blob = new Blob( [base64DecToArr
+			var form = new FormData();
+			form.append("data", blob, 'testimage');
+			/* end new */
+
+			//xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.send(form);
   	}
 	
   	

@@ -13,9 +13,8 @@ class Capture extends Controller {
 	
 	public function index($data = '') {
 		if (Input::exists()) {
-			echo "ere";
 			$image = $this->model('Image', array(
-				'title' => 'Screenshow1',
+				'title' => 'Screenshot 1',
 				'description' => 'Captured ' . date('Y-m-d H:m:s', time()),
 				'user_id' => $this->_user->data()->id
 			));

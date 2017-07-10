@@ -99,7 +99,7 @@
 		};
 		xhttp.open("POST", "../capture", true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xhttp.send("data=" + data);
+		xhttp.send(JSON.stringify(data));
   }
 
   

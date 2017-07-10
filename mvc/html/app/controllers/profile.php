@@ -11,12 +11,12 @@ class Profile extends Controller {
 		$this->_images = array();
 		$this->_user->shield();
 		$this->view('includes/header', array(
-			'stylesheets' => array('header'),
+			'stylesheets' => array('header', 'profile'),
 			'navs' => array(
 				'Logout' => 'logout',
 				'Browse' => 'browse',
 				'Upload Photo' => 'upload',
-				'Update Profile' => 'update',
+				'Profile' => 'profile',
 				'Home' => 'home'
 			)
 		));
@@ -33,9 +33,7 @@ class Profile extends Controller {
 					'filepath' => $images->results()[$i]->location	
 				));
 			}
-			foreach ($this->_images as $i) {
-				$i->display();
-			}
+			$this->view('home/profile', array ('images' => $this->_images));
 		} else {
 			echo "You haven't taken any pictures yet, dumbass!";
 		}

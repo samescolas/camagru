@@ -1,0 +1,21 @@
+.img-wrapper {
+	width: 50%;
+	text-align: center;
+}
+
+.img-wrapper:nth-child(even) {
+	float: left;
+}
+
+.img-wrapper:nth-child(odd) {
+	float: right;
+}
+
+.img-wrapper p {
+	padding: 5px 0;
+}
+
+.img-wrapper img {
+	width: 60%;
+	padding: 10px 0;
+}

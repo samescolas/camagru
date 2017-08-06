@@ -36,4 +36,5 @@ input[type="text"], input[type="password"], input[type="email"] {
 input[type="submit"] {
 	width: 7vw;
 	height: 3vmin;
+	margin-top: 15px;
 }

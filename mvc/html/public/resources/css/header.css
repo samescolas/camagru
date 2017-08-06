@@ -87,9 +87,12 @@ a.active {
 	/* display: none; */
 }
 
-.flash, .error {
-	text-align: center;
+.error {
 	width: 97%;
+}
+
+.flash {
+	width: 100%;
 }
 
 .error-close, .flash-close {
@@ -98,7 +101,7 @@ a.active {
 
 .flash, .error, .error-close, .flash-close {
 	opacity: 0.9;
-	height: 27px;
+	height: 42px;
 	padding-top: 2px;
 	border-bottom: 0.5px solid darkred;
 	display: inline-block;

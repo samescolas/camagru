@@ -113,3 +113,25 @@ a.active {
 	opacity: 0.9;
 	cursor: pointer;
 }
+
+footer {
+	height: 7%;
+	width: 100%;
+	background-color: slateblue;
+	position: fixed;
+	bottom: 0;
+}
+
+footer p{
+	margin: 5px;
+}
+
+footer #footer-1 {
+	text-align: left;
+	float: left;
+}
+
+footer #footer-2 {
+	text-align: right;
+	float: right;
+}

@@ -83,8 +83,8 @@ class User {
 		if (!$this->data()->id) {
 			return (false);
 		}
-		$images = $this->_db->get('images', array('user_id', '=', $this->data()->id));
-		if ($images->count())
+		$images = $this->_db->get('images', array('user_id', '=', $this->data()->id))->results();
+		if (count($images))
 			return ($images);
 		return (false);
 	}

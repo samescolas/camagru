@@ -1,7 +1,2 @@
 fix sendmail configuration
-add footer
-server config script
-	cmd -- a2enmod rewrite
-	cmd -- apt-get install sendmail-bin
-	php.ini -- file_uploads = On
-
+Document root in sites-available/?.conf

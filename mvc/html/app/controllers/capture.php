@@ -21,12 +21,7 @@ class Capture extends Controller {
 			$image->upload();
 			$image->display();
 		} else {
-			print_r($_POST);
-			print_r($_GET);
-			print_r($_FILES);
-			echo $data;
-			echo "nope";
-			die();
+			Redirect::to('camagru');
 		}
 	}
 }

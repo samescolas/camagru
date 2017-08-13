@@ -17,15 +17,16 @@ class Camagru extends Controller {
 				'Home' => 'home'
 			)
 		));
-		$this->view('includes/footer');
 	}
 
 	public function index($username = '') {
 		$this->view('camera/capture');
+		$this->view('includes/footer');
 	}
 
 	public function me($data = '') {
 		echo "herE";
+		$this->view('includes/footer');
 	}
 }
 

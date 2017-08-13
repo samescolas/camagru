@@ -6,8 +6,8 @@ $GLOBALS['config'] = array(
 	'max_file_size' => 500000,
 	'mysql' => array(
 		'host' => 'localhost',
-		'username' => 'phpmyadmin',
-		'password' => 'pass123' ,
+		'username' => 'root',
+		'password' => '' ,
 		'db' => 'camagru'
 	),
 	'remember' => array(

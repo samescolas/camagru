@@ -32,4 +32,6 @@ RUN service mysql start && \
 
 RUN a2enmod rewrite
 
+RUN chown -R www-data:www-data /var/www/html/ && chmod -R g+rw /var/www/html
+
 ENTRYPOINT service apache2 start && service mysql start && bash

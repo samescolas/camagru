@@ -13,7 +13,8 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
 	php7.0-mysql \
 	mysql-server \
 	apache2 \
-	vim
+	vim \
+	git
 
 RUN cp $SERV_DIR/$SITE_CONF $SERV_DIR/$SITE_CONF.bk
 RUN cp $SERV_DIR/apache2.conf $SERV_DIR/apache2.conf.bk

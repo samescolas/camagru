@@ -16,7 +16,7 @@ class Profile extends Controller {
 				'Logout' => 'logout',
 				'Browse' => 'browse',
 				'Upload Photo' => 'upload',
-				'Profile' => 'profile',
+				'Change Password' => 'changepassword',
 				'Home' => 'home'
 			)
 		));

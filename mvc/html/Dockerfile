@@ -1,6 +1,7 @@
 FROM debian:latest
 
 ENV SERV_DIR /etc/apache2
+ENV SITE_CONF sites-available/000-default.conf
 
 COPY ./ /var/www/html
 
@@ -14,14 +15,15 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
 	apache2 \
 	vim
 
-RUN cp $SERV_DIR/sites-available/000-default.conf $SERV_DIR/sites-available/000-default.conf.bk
+RUN cp $SERV_DIR/$SITE_CONF $SERV_DIR/$SITE_CONF.bk
 RUN cp $SERV_DIR/apache2.conf $SERV_DIR/apache2.conf.bk
 
 RUN cat $SERV_DIR/sites-available/000-default.conf | \
 		sed 's/DocumentRoot.*/DocumentRoot \/var\/www\/html\/public/g' > \
-		$SERV_DIR/sites-available/000-default.conf.tmp
+		$SERV_DIR/$SITE_CONF.tmp
 
-RUN mv $SERV_DIR/sites-available/000-default.conf.tmp $SERV_DIR/sites-available/000-default.conf
+RUN mv $SERV_DIR/$SITE_CONF.tmp $SERV_DIR/$SITE_CONF
+RUN sed -i '/Directory \/var\/www\//!b;n;n;c\\tAllowOverride All' $SERV_DIR/apache2.conf
 
 RUN service mysql start && \
 		mysqladmin -u root password camagru && \

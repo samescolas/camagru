@@ -112,6 +112,11 @@ class User {
 		}
 	}
 
+	public function resendValidationEmail($fields) {
+		$this->_db->del('email_verification', array('user_id', '=', $this->data()->id));
+		$this->validateEmail($fields);
+	}
+
 	public function validateEmail($fields) {
 		$token = Token::create();
 		$this->_db->insert('email_verification', array(

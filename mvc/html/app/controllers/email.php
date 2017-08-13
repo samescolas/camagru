@@ -13,6 +13,7 @@ class Email extends Controller {
 			Session::flash('welcome', 'Please log in!');
 			Redirect::to('home');
 		}
+		Session::flash('welcome');
 	}
 
 	public function index($username = '') {

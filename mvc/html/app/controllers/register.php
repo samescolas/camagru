@@ -21,14 +21,6 @@ class Register extends Controller {
 	}
 
 	public function index() {
-		if (Session::exists('welcome') || Session::exists('bad')) {
-			echo "<div id=\"flash-container\">";
-			if (Session::exists('welcome'))
-				echo "<p class=\"flash\">" . Session::flash('welcome') . "</p>";
-			if (Session::exists('bad'))
-				echo "<p class=\"flash\">" . Session::flash('bad') . "</p>";
-			echo "</div>";
-		}
 		if ($this->_user->isLoggedIn())
 			Redirect::to('home');
 

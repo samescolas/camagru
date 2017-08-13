@@ -1,5 +1,7 @@
 FROM debian:latest
 
+ENV SERV_DIR /etc/apache2
+
 COPY ./ /var/www/html
 
 RUN mv /var/www/html/.vimrc /root/.vimrc
@@ -12,13 +14,14 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
 	apache2 \
 	vim
 
-RUN cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf.bk
+RUN cp $SERV_DIR/sites-available/000-default.conf $SERV_DIR/sites-available/000-default.conf.bk
+RUN cp $SERV_DIR/apache2.conf $SERV_DIR/apache2.conf.bk
 
-RUN cat /etc/apache2/sites-available/000-default.conf | \
+RUN cat $SERV_DIR/sites-available/000-default.conf | \
 		sed 's/DocumentRoot.*/DocumentRoot \/var\/www\/html\/public/g' > \
-		/etc/apache2/sites-available/000-default.conf.tmp
+		$SERV_DIR/sites-available/000-default.conf.tmp
 
-RUN mv /etc/apache2/sites-available/000-default.conf.tmp /etc/apache2/sites-available/000-default.conf
+RUN mv $SERV_DIR/sites-available/000-default.conf.tmp $SERV_DIR/sites-available/000-default.conf
 
 RUN service mysql start && \
 		mysqladmin -u root password camagru && \

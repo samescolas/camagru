@@ -4,6 +4,8 @@ GRANT ALL PRIVILEGES ON *.* TO 'camagru'@'localhost';
 
 FLUSH PRIVILEGES;
 
+USE camagru;
+
 CREATE TABLE users (
 	id INT NOT NULL AUTO_INCREMENT,
 	username VARCHAR(18) NOT NULL, 
@@ -29,16 +31,6 @@ CREATE TABLE sessions (
 	FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE likes (
-	id INT NOT NULL AUTO_INCREMENT,
-	user_id INT NOT NULL,
-	image_id INT NOT NULL,
-	dt DATETIME NOT NULL DEFAULT NOW(),
-	PRIMARY KEY (id),
-	FOREIGN KEY (user_id) REFERENCES users(id),
-	FOREIGN KEY (image_id) REFERENCES images(id)
-);
-
 CREATE TABLE images (
 	id INT NOT NULL AUTO_INCREMENT,
 	user_id INT NOT NULL,
@@ -49,6 +41,16 @@ CREATE TABLE images (
 	creation_dt DATETIME  NOT NULL DEFAULT NOW(),
 	PRIMARY KEY (id),
 	FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE likes (
+	id INT NOT NULL AUTO_INCREMENT,
+	user_id INT NOT NULL,
+	image_id INT NOT NULL,
+	dt DATETIME NOT NULL DEFAULT NOW(),
+	PRIMARY KEY (id),
+	FOREIGN KEY (user_id) REFERENCES users(id),
+	FOREIGN KEY (image_id) REFERENCES images(id)
 );
 
 CREATE TABLE email_verification (

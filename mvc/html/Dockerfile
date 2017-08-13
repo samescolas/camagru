@@ -20,7 +20,10 @@ RUN cat /etc/apache2/sites-available/000-default.conf | \
 
 RUN mv /etc/apache2/sites-available/000-default.conf.tmp /etc/apache2/sites-available/000-default.conf
 
-RUN service mysql start && mysqladmin -u root password camagru && mysqladmin create camagru
+RUN service mysql start && \
+		mysqladmin -u root password camagru && \
+		mysqladmin create camagru && \
+		mysql -u root -e "$(cat /var/www/html/init.sql)"
 
 RUN a2enmod rewrite
 

@@ -106,12 +106,6 @@ class User {
 		}
 	}
 
-	public function updatePassword($fields) {
-		if (!$this->_db->update('shadow', $this->data()->id, $fields)) {
-			throw new Exception('Unable to update password');
-		}
-	}
-
 	public function resendValidationEmail($fields) {
 		$this->_db->del('email_verification', array('user_id', '=', $this->data()->id));
 		$this->validateEmail($fields);
@@ -176,6 +170,17 @@ class User {
 			}
 		}
 		return (false);
+	}
+
+	public function updatePassword($newpw) {
+		$this->_db->del('shadow', array('user_id', '=', $this->data()->id));
+		$salt = Hash::salt(32);
+		$pw_fields = array(
+			'user_id' => $this->data()->id,
+			'passwd' => Hash::make($newpw, $salt),
+			'salt' => $salt
+		);
+		$this->setPass($pw_fields);
 	}
 
 	public function logout() {

@@ -89,6 +89,8 @@
 			clearphoto();
 		}, false);
 
+		toggleStatus();
+		toggleStatus();
 		clearphoto();
 	}
 

@@ -22,11 +22,6 @@ class Camagru extends Controller {
 		$this->view('camera/capture');
 		$this->view('includes/footer');
 	}
-
-	public function me($data = '') {
-		echo "herE";
-		$this->view('includes/footer');
-	}
 }
 
 ?>

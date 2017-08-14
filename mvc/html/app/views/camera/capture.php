@@ -1,15 +1,22 @@
-<div class="wrapper">
-	<canvas id="canvas">
-		<div class="output">
+<main>
+	<div id="overlay-panel">
+	<ul>
+		<li>IMG1</li>
+		<li>IMG2</li>
+		<li>IMG3</li>
+	</ul>
+	<div>
+	<div class="camera">
+		<video id="video">Video stream not available.</video>
+		<canvas id="canvas">
 			<img id="photo" alt="The screen capture will appear in this box.">
-		</div>
-	</canvas>
-		<div class="camera">
-			<video id="video">Video stream not available.</video>
-		</div>
-	
-			<button id="startbutton">Take photo</button>
-	
-	<div id="target">
+		</canvas>
+		<br />
+		<button id="startbutton">Take photo</button>
+		<button id="savebutton">Save</button>
+		<button id="deletebutton">Delete</button>
 	</div>
+</main>
+<div id="side-panel">
+</div>
 </div>

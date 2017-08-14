@@ -19,6 +19,8 @@
 	var photo = null;
 	var target = null;
 	var startbutton = null;
+	var savebutton = null;
+	var deletebutton = null;
 
 	function startup() {
 		video = document.getElementById('video');
@@ -26,6 +28,8 @@
 		photo = document.getElementById('photo');
 		target = document.getElementById('target');
 		startbutton = document.getElementById('startbutton');
+		savebutton = document.getElementById('savebutton');
+		deletebutton = document.getElementById('deletebutton');
 
 		navigator.getMedia = ( navigator.getUserMedia ||
 			   navigator.webkitGetUserMedia ||
@@ -67,12 +71,31 @@
 		}
 		}, false);
 
-		startbutton.addEventListener('click', function(ev){
+		startbutton.addEventListener('click', function(ev) {
 			takepicture();
+			//var data = canvas.toDataURL('image/png');
+			//photo.setAttribute('src', data);
+			//sendpicture(data);
 			ev.preventDefault();
 		}, false);
 
+		savebutton.addEventListener('click', function(ev) {
+			savePhoto();
+			toggleStatus();
+		}, false);
+
+		deletebutton.addEventListener('click', function(ev) {
+			toggleStatus();
+			clearphoto();
+		}, false);
+
 		clearphoto();
+	}
+
+	function savePhoto() {
+		var data = canvas.toDataURL('image/png');
+		//photo.setAttribute('src', data);
+		sendpicture(data);
 	}
 
 	// Fill the photo with an indication that none has been
@@ -137,6 +160,21 @@
 		xhttp.send(form);
 	}
 
+	function toggleStatus() {
+		if (video.style.display == "none") {
+			video.style.display = "inherit";
+			canvas.style.display = "none";
+			startbutton.style.display = "inherit";
+			savebutton.style.display = "none";
+			deletebutton.style.display = "none";
+		} else {
+			video.style.display = "none";
+			canvas.style.display = "inherit";
+			startbutton.style.display = "none";
+			savebutton.style.display = "inherit";
+			deletebutton.style.display = "inherit";
+		}
+	}
   
 	// Capture a photo by fetching the current contents of the video
 	// and drawing it into a canvas, then converting that to a PNG
@@ -147,13 +185,11 @@
 	function takepicture() {
 		var context = canvas.getContext('2d');
 		if (width && height) {
+			toggleStatus();
+
 			canvas.width = width;
 			canvas.height = height;
 			context.drawImage(video, 0, 0, width, height);
-
-			var data = canvas.toDataURL('image/png');
-			photo.setAttribute('src', data);
-			  sendpicture(data);
 		} else {
 			clearphoto();
 		}

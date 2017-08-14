@@ -1,7 +1,13 @@
-canvas {
-	display: none;
+main {
+	width: 67%;
+	background-color: yellow;
 }
 
-#fileToUpload {
-	visibility: hidden;
+div #side-panel {
+	width: 67%;
+	background-color: yellow;
+}
+
+canvas, #savebutton, #deletebutton {
+	display: none;
 }

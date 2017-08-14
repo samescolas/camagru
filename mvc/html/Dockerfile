@@ -16,8 +16,6 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
 	vim \
 	git
 
-RUN echo "camagru.com" > /etc/hostname && sendmailconfig
-
 RUN cp $SERV_DIR/$SITE_CONF $SERV_DIR/$SITE_CONF.bk
 RUN cp $SERV_DIR/apache2.conf $SERV_DIR/apache2.conf.bk
 

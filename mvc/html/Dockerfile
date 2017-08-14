@@ -25,6 +25,8 @@ RUN cat $SERV_DIR/sites-available/000-default.conf | \
 
 RUN mv $SERV_DIR/$SITE_CONF.tmp $SERV_DIR/$SITE_CONF
 RUN sed -i '/Directory \/var\/www\//!b;n;n;c\\tAllowOverride All' $SERV_DIR/apache2.conf
+RUN cat /etc/apache2/envvars | sed -i 's/export APACHE_RUN_USER=www-data/export APACHE_RUN_USER=camagru/s'
+RUN cat /etc/apache2/envvars | sed -i 's/export APACHE_RUN_GROUP=www-data/export APACHE_RUN_GROUP=camagru/s'
 
 RUN service mysql start && \
 		mysqladmin -u root password camagru && \
@@ -33,6 +35,6 @@ RUN service mysql start && \
 
 RUN a2enmod rewrite
 
-RUN chown -R www-data:www-data /var/www/html/ && chmod -R g+rw /var/www/html
+RUN chown -R camagru:camagru /var/www/html/ && chmod -R g+rw /var/www/html
 
 ENTRYPOINT echo "camagru.com" > /etc/hostname && service apache2 start && service mysql start && sendmailconfig && bash

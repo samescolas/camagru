@@ -54,7 +54,7 @@ class Image {
 	public function display($width = 25) {
 		echo "<img src=\"" . $this->_filepath . "\" width=\"".$width."%\">";
 		echo "<h1>".$this->title."</h1>";
-		echo "<p class=\"likes\">" + $this->getLikes() + "</p>";
+		echo "<p class=\"likes\">" . $this->getLikes() . "</p>";
 		echo "<p>".$this->description."</p>";
 		foreach($this->comments as $c) {
 			echo "<p class=\"comment\">" . $c->comment . "</p>";

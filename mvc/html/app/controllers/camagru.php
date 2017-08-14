@@ -13,8 +13,7 @@ class Camagru extends Controller {
 				'Logout' => 'logout',
 				'Browse' => 'browse',
 				'Upload Photo' => 'upload',
-				'Profile' => 'profile',
-				'Home' => 'home'
+				'Profile' => 'profile'
 			)
 		));
 	}

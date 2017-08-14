@@ -11,22 +11,22 @@ body {
 
 #logo-wrapper {
 	width: 25vw;
-	height: 11vh;
+	height: 14vh;
 	background-color: #4242DD;
 	float: left;
 }
 
 #nav-wrapper {
-	width: 75vw;
-	height: 11vh;
+	width: 73.3vw;
+	height: 14vh;
 	background-color: #4242DD;
-	float: right;
+	float: left;
 }
 
 #logo-wrapper h1 {
 	padding: 3vh 0 0 15px;
 	color: lavender;
-	font-size: 2.7em;
+	font-size: 4.7vmin;
 }
 
 #nav-wrapper ul {
@@ -39,9 +39,14 @@ body {
 }
 
 #nav-wrapper li {
+	font-size: 2.2vmin;
 	float: right;
 	width: 17vw;
 	height: 100%;
+}
+
+#nav-wrapper li:after-last {
+	clear: both;
 }
 
 #nav-wrapper a:hover {
@@ -53,7 +58,7 @@ body {
 	text-decoration: none;
 	color: lavender;
 	height: 100%;
-	padding: 4.5vh 0 0 4vw;
+	padding: 4.5vh 0 0 5vw;
 }
 
 .flash, .flash-container {

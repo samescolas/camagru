@@ -7,8 +7,6 @@ COPY ./ /var/www/html
 
 RUN mv /var/www/html/.vimrc /root/.vimrc
 
-RUN echo "camagru.com" > /etc/hostname
-
 RUN apt-get update && apt-get upgrade && apt-get install -y \
 	sendmail-bin \
 	php \
@@ -17,6 +15,8 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
 	apache2 \
 	vim \
 	git
+
+RUN echo "camagru.com" > /etc/hostname && sendmailconfig
 
 RUN cp $SERV_DIR/$SITE_CONF $SERV_DIR/$SITE_CONF.bk
 RUN cp $SERV_DIR/apache2.conf $SERV_DIR/apache2.conf.bk

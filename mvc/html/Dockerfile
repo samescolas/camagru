@@ -8,7 +8,7 @@ COPY ./ /var/www/html
 RUN mv /var/www/html/.vimrc /root/.vimrc
 
 RUN apt-get update && apt-get upgrade && apt-get install -y \
-	sendmail \
+	sendmail-bin \
 	php \
 	php7.0-mysql \
 	mysql-server \

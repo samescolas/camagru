@@ -35,4 +35,4 @@ RUN a2enmod rewrite
 
 RUN chown -R www-data:www-data /var/www/html/ && chmod -R g+rw /var/www/html
 
-ENTRYPOINT echo "camagru.com" > /etc/hostname && service apache2 start && service mysql start && bash
+ENTRYPOINT echo "camagru.com" > /etc/hostname && service apache2 start && service mysql start && sendmailconfig && bash

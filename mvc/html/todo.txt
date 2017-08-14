@@ -1,2 +1,0 @@
-fix sendmail configuration
-Document root in sites-available/?.conf

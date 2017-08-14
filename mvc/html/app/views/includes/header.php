@@ -15,8 +15,10 @@
 </head>
 <body>
 	<div id="header">
-		<a href="home"><h1 id="logo">Camagru</h1></a>
-		<div class="wrapper">
+		<div id="logo-wrapper">
+			<a href="home"><h1 id="logo">Camagru</h1></a>
+		</div>
+		<div id="nav-wrapper">
 			<ul>
 				<?php
 					foreach($data['navs'] as $label => $link) {

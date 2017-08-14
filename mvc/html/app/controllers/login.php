@@ -13,8 +13,6 @@ class Login extends Controller {
 			'scripts' => array('flash'),
 			'navs' => array(
 				'Browse' => 'browse',
-				'Register' => 'register',
-				'Login' => 'login',
 				'Home' => 'home'
 			)
 		));

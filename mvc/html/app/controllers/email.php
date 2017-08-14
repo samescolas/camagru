@@ -33,10 +33,7 @@ class Email extends Controller {
 			'email' => $this->_user->data()->email
 		));
 		Session::flash('welcome', 'Email sent!');
-	}
-
-	public function me($data = '') {
-		echo "herE";
+		Redirect::to('home');
 	}
 }
 

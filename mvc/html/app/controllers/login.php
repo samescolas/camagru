@@ -12,6 +12,7 @@ class Login extends Controller {
 			'stylesheets' => array('header', 'form'),
 			'scripts' => array('flash'),
 			'navs' => array(
+				'Register' => 'register',
 				'Browse' => 'browse',
 				'Home' => 'home'
 			)

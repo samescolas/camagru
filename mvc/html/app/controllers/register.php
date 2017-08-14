@@ -26,8 +26,7 @@ class Register extends Controller {
 			$validation = $this->validate_form();
 			if ($validation !== false && $validation->passed()) {
 				$this->registerUser($this->_user);
-				Session::flash('welcome', 'You have successfully registered!');
-				Redirect::to('login');
+				exit();
 			} else if($validation !== false) {
 				$validation->displayErrors();
 			}
@@ -54,6 +53,8 @@ class Register extends Controller {
 				'password' => Hash::make(Input::get('password'), $salt),
 				'salt' => $salt
 			));
+			Session::flash('welcome', 'You have successfully registered!');
+			header('Location: http://' . $_SERVER['SERVER_NAME'] . '/login');
 			$user->validateEmail(array(
 				'username' => Input::get('username'),
 				'email' => Input::get('email')

@@ -89,9 +89,20 @@
 			clearphoto();
 		}, false);
 
+		window.addEventListener('resize', function(event) {
+			width = screen.width * 0.22;
+			height = width / (4/3);
+			video.setAttribute('width', width);
+			video.setAttribute('height', height);
+			canvas.setAttribute('width', width);
+			event.preventDefault();
+			canvas.setAttribute('height', height);
+			alert("resize!");
+		});
+		
 		toggleStatus();
 		toggleStatus();
-		clearphoto();
+		//clearphoto();
 	}
 
 	function savePhoto() {
@@ -177,6 +188,13 @@
 			deletebutton.style.display = "inherit";
 		}
 	}
+
+	function resize() {
+		width = screen.width * 0.22;
+		height = width / (4/3);
+		canvas.width = width;
+		canvas.height = height;
+	}
   
 	// Capture a photo by fetching the current contents of the video
 	// and drawing it into a canvas, then converting that to a PNG
@@ -201,5 +219,4 @@
 	// once loading is complete.
 	//
 	window.addEventListener('load', startup, false);
-
 })();

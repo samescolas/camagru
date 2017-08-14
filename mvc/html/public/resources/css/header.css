@@ -25,6 +25,7 @@ body {
 
 #logo-wrapper h1 {
 	padding: 3vh 0 0 15px;
+	color: lavender;
 	font-size: 2.7em;
 }
 
@@ -50,6 +51,71 @@ body {
 #nav-wrapper a {
 	display: block;
 	text-decoration: none;
+	color: lavender;
 	height: 100%;
 	padding: 4.5vh 0 0 4vw;
+}
+
+.flash, .flash-container {
+	background-color: #42DD42;
+}
+
+.error, .error-close {
+	background-color: #DD4242;
+}
+
+#flash-container, #error-container {
+	width: 100%;
+	position: absolute;
+	z-index: 1000;
+	/* display: none; */
+}
+
+.error {
+	width: 97%;
+}
+
+.flash {
+	width: 100%;
+}
+
+.error-close, .flash-close {
+	width: 3%;
+}
+
+.flash, .error, .error-close, .flash-close {
+	opacity: 0.9;
+	height: 42px;
+	padding-top: 2px;
+	border-bottom: 0.5px solid darkred;
+	display: inline-block;
+	position: relative;
+	color: white;
+}
+
+#flash-container .conatainer:hover, #error-container .container:hover {
+	opacity: 0.9;
+	cursor: pointer;
+}
+
+footer {
+	height: 7%;
+	width: 100%;
+	background-color: slateblue;
+	position: fixed;
+	bottom: 0;
+}
+
+footer p{
+	margin: 5px;
+}
+
+footer #footer-1 {
+	text-align: left;
+	float: left;
+}
+
+footer #footer-2 {
+	text-align: right;
+	float: right;
 }

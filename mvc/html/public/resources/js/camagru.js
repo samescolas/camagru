@@ -1,113 +1,110 @@
 (function() {
-  // The width and height of the captured photo. We will set the
-  // width to the value defined here, but the height will be
-  // calculated based on the aspect ratio of the input stream.
+	// The width and height of the captured photo. We will set the
+	// width to the value defined here, but the height will be
+	// calculated based on the aspect ratio of the input stream.
 
-  var width = 320;    // We will scale the photo width to this
-  var height = 0;     // This will be computed based on the input stream
+	var width = 320;    // We will scale the photo width to this
+	var height = 0;     // This will be computed based on the input stream
 
-  // |streaming| indicates whether or not we're currently streaming
-  // video from the camera. Obviously, we start at false.
+	// |streaming| indicates whether or not we're currently streaming
+	// video from the camera. Obviously, we start at false.
 
-  var streaming = false;
+	var streaming = false;
 
-  // The various HTML elements we need to configure or control. These
-  // will be set by the startup() function.
+	// The various HTML elements we need to configure or control. These
+	// will be set by the startup() function.
 
-  var video = null;
-  var canvas = null;
-  var photo = null;
-  var target = null;
-  var startbutton = null;
+	var video = null;
+	var canvas = null;
+	var photo = null;
+	var target = null;
+	var startbutton = null;
 
-  function startup() {
-    video = document.getElementById('video');
-    canvas = document.getElementById('canvas');
-    photo = document.getElementById('photo');
-	target = document.getElementById('target');
-    startbutton = document.getElementById('startbutton');
+	function startup() {
+		video = document.getElementById('video');
+		canvas = document.getElementById('canvas');
+		photo = document.getElementById('photo');
+		target = document.getElementById('target');
+		startbutton = document.getElementById('startbutton');
 
-    navigator.getMedia = ( navigator.getUserMedia ||
-                           navigator.webkitGetUserMedia ||
-                           navigator.mozGetUserMedia ||
-                           navigator.msGetUserMedia);
+		navigator.getMedia = ( navigator.getUserMedia ||
+			   navigator.webkitGetUserMedia ||
+			   navigator.mozGetUserMedia ||
+			   navigator.msGetUserMedia);
 
-    navigator.getMedia(
-      {
-        video: true,
-        audio: false
-      },
-      function(stream) {
-        if (navigator.mozGetUserMedia) {
-          video.mozSrcObject = stream;
-        } else {
-          var vendorURL = window.URL || window.webkitURL;
-          video.src = vendorURL.createObjectURL(stream);
-        }
-        video.play();
-      },
-      function(err) {
-        console.log("An error occured! " + err);
-      }
-    );
+		navigator.getMedia(
+		{
+			video: true,
+			audio: false
+		},
+		function (stream) {
+			if (navigator.mozGetUserMedia) {
+				video.mozSrcObject = stream;
+		} else {
+			var vendorURL = window.URL || window.webkitURL;
+			video.src = vendorURL.createObjectURL(stream);
+		}
+		video.play();
+		},
+		function (err) {
+			console.log("An error occured! " + err);
+		}
+		);
 
-    video.addEventListener('canplay', function(ev){
-      if (!streaming) {
-        height = video.videoHeight / (video.videoWidth/width);
-      
-        // Firefox currently has a bug where the height can't be read from
-        // the video, so we will make assumptions if this happens.
-      
-        if (isNaN(height)) {
-          height = width / (4/3);
-        }
-      
-        video.setAttribute('width', width);
-        video.setAttribute('height', height);
-        canvas.setAttribute('width', width);
-        canvas.setAttribute('height', height);
-        streaming = true;
-      }
-    }, false);
+		video.addEventListener('canplay', function(ev){
+		if (!streaming) {
+			height = video.videoHeight / (video.videoWidth/width);
 
-    startbutton.addEventListener('click', function(ev){
-      takepicture();
-      ev.preventDefault();
-    }, false);
-    
-    clearphoto();
-  }
+			if (isNaN(height)) {
+				height = width / (4/3);
+			}
+	      
+			video.setAttribute('width', width);
+			video.setAttribute('height', height);
+			canvas.setAttribute('width', width);
+			canvas.setAttribute('height', height);
+			streaming = true;
+		}
+		}, false);
 
-  // Fill the photo with an indication that none has been
-  // captured.
+		startbutton.addEventListener('click', function(ev){
+			takepicture();
+			ev.preventDefault();
+		}, false);
 
-  function clearphoto() {
-    var context = canvas.getContext('2d');
-    context.fillStyle = "#AAA";
-    context.fillRect(0, 0, canvas.width, canvas.height);
+		clearphoto();
+	}
 
-    var data = canvas.toDataURL('image/png');
-    photo.setAttribute('src', data);
-  }
+	// Fill the photo with an indication that none has been
+	// captured.
 
-  function b64ToUint6(nChr) {
+	function clearphoto() {
+		var context = canvas.getContext('2d');
+		context.fillStyle = "#AAA";
+		context.fillRect(0, 0, canvas.width, canvas.height);
+
+		var data = canvas.toDataURL('image/png');
+		photo.setAttribute('src', data);
+	}
+
+	function b64ToUint6(nChr) {
 		// convert base64 encoded character to 6-bit integer
 		// developer.mozilla.org/en-US/docs/Web/JavaScript/Base64_encoding_and_decoding
 		return (nChr > 64 && nChr < 91 ? nChr - 65
-			: nChr > 96 && nChr < 123 ? nChr - 71
-			: nChr > 47 && nChr < 58 ? nChr + 4
-			: nChr === 43 ? 62 
-			: nChr === 47 ? 63 
-			: 0);
-  }
+		: nChr > 96 && nChr < 123 ? nChr - 71
+		: nChr > 47 && nChr < 58 ? nChr + 4
+		: nChr === 43 ? 62 
+		: nChr === 47 ? 63 
+		: 0);
+	}
 
-  function base64DecToArr(sBase64, nBlocksSize) {
+	function base64DecToArr(sBase64, nBlocksSize) {
 		// convert base64 encoded string to uIntArray
 		// developer.mozilla.org/en-US/docs/Web/JavaScript/Base64_encoding_and_decoding
 		var sB64Enc = sBase64.replace(/[^A-Za-z0-9\+\/]/g, "");
 		var nInLen = sB64Enc.length;
 		var nOutLen = nBlocksSize ? 
-				Math.ceil((nInLen * 3 + 1 >> 2) / nBlocksSize) * nBlocksSize : nInLen * 3 + 1 >> 2;
+			Math.ceil((nInLen * 3 + 1 >> 2) / nBlocksSize) * nBlocksSize : nInLen * 3 + 1 >> 2;
 		var taBytes = new Uint8Array(nOutLen);
 
 		for (var nMod3, nMod4, nUint24 = 0, nOutIdx = 0, nInIdx = 0; nInIdx < nInLen; nInIdx++) {
@@ -121,48 +118,50 @@
 			}
 		}
 		return taBytes;
-  }
+	}
 
-  function sendpicture(data) {
+	function sendpicture(data) {
 		var rawData = data.replace(/^data\:image\/\w+\;base64\,/, '');
 		var xhttp = new XMLHttpRequest();
+		var blob = new Blob( [base64DecToArr(rawData)], {type: 'image/png'} );
+		var form = new FormData();
+
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				document.getElementById("target").innerHTML = this.responseText;
 			}
 		};
-		xhttp.open("POST", "../capture", true);
 
-		var blob = new Blob( [base64DecToArr(rawData)], {type: 'image/png'} );
-		var form = new FormData();
+		xhttp.open("POST", "../capture", true);
 		form.append("data", blob, 'testimage');
 		xhttp.send(form);
-  }
+	}
 
   
-  // Capture a photo by fetching the current contents of the video
-  // and drawing it into a canvas, then converting that to a PNG
-  // format data URL. By drawing it on an offscreen canvas and then
-  // drawing that to the screen, we can change its size and/or apply
-  // other changes before drawing it.
+	// Capture a photo by fetching the current contents of the video
+	// and drawing it into a canvas, then converting that to a PNG
+	// format data URL. By drawing it on an offscreen canvas and then
+	// drawing that to the screen, we can change its size and/or apply
+	// other changes before drawing it.
 
-  function takepicture() {
-    var context = canvas.getContext('2d');
-    if (width && height) {
-      canvas.width = width;
-      canvas.height = height;
-      context.drawImage(video, 0, 0, width, height);
-    
-      var data = canvas.toDataURL('image/png');
-      photo.setAttribute('src', data);
-	  sendpicture(data);
-	  //target.innerHTML += "<img src=\"" + data + "\"><br/>";
-    } else {
-      clearphoto();
-    }
-  }
+	function takepicture() {
+		var context = canvas.getContext('2d');
+		if (width && height) {
+			canvas.width = width;
+			canvas.height = height;
+			context.drawImage(video, 0, 0, width, height);
 
-  // Set up our event listener to run the startup process
-  // once loading is complete.
-  window.addEventListener('load', startup, false);
+			var data = canvas.toDataURL('image/png');
+			photo.setAttribute('src', data);
+			  sendpicture(data);
+		} else {
+			clearphoto();
+		}
+	}
+
+	// Set up our event listener to run the startup process
+	// once loading is complete.
+	//
+	window.addEventListener('load', startup, false);
+
 })();

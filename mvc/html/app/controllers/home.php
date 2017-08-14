@@ -18,9 +18,6 @@ class Home extends Controller {
 		else if ($this->_user->isLoggedIn()) {
 			Redirect::to('email');
 		}
-		else if (Cookie::exists(Config::get('remember/stamp'))) {
-			Redirect::to('login');
-		}
 		if (!Session::exists(Config::get('session/token_name')))
 			Token::generate();
 		Redirect::to('register');

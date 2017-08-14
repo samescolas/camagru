@@ -8,7 +8,8 @@ class Verify extends Controller {
 	public function index($token, $username = '') {
 		if ($username !== '') {
 			$user = $this->model('User', $username);
-			if ($user->verifyEmail($user->data()->user_id, $token)) {
+			print_r($user);
+			if ($user->verifyEmail($user->data()->id, $token)) {
 				Redirect::to('../../home/');
 			}
 		}

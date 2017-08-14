@@ -27,7 +27,7 @@ class Register extends Controller {
 			if ($validation !== false && $validation->passed()) {
 				$this->registerUser($this->_user);
 				Session::flash('welcome', 'You have successfully registered!');
-				Redirect::to('home');
+				Redirect::to('login');
 			} else if($validation !== false) {
 				$validation->displayErrors();
 			}

@@ -11,11 +11,7 @@
 	</div>
 	<div id="overlay-panel">
 	<ul id="overlay-images">
-		<li class=\"overlay-image\"><img src="http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Alien-PNG-Transparent-Image-500x623.png"></li>
-		<li class=\"overlay-image\"><img src="http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Alien-PNG-Transparent-Image-500x623.png"></li>
-		<li class=\"overlay-image\"><img src="http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Alien-PNG-Transparent-Image-500x623.png"></li>
-		<li class=\"overlay-image\"><img src="http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Alien-PNG-Transparent-Image-500x623.png"></li>
-		<li class=\"overlay-image\"><img src="http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Alien-PNG-Transparent-Image-500x623.png"></li>
+		<li class="overlay-image"><img src="resources/imgs/alien.png"></li>
 	</ul>
 	</div>
 </div>

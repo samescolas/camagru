@@ -33,6 +33,10 @@ body {
 	font-size: 4.7vmin;
 }
 
+#logo-wrapper a {
+	text-decoration: none;
+}
+
 #nav-wrapper ul {
 	width: 75%;
 	height: 100%;
@@ -43,6 +47,7 @@ body {
 }
 
 #nav-wrapper li {
+	text-align: center;
 	font-size: 2.2vmin;
 	float: right;
 	width: 12vw;
@@ -62,7 +67,7 @@ body {
 	text-decoration: none;
 	color: lavender;
 	height: 100%;
-	padding: 4.5vh 0 0 5vw;
+	padding-top: 50%;
 }
 
 .flash, .flash-container {

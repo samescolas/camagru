@@ -76,6 +76,10 @@ canvas, #savebutton, #deletebutton {
 	list-style-type: none;
 }
 
+#overlay-images img:hover {
+	cursor: pointer;
+}
+
 #overlay-images li {
 	float: left;
 	margin-top: 5%;

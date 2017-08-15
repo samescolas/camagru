@@ -93,5 +93,14 @@ class Image {
 		} else {
 			throw new Exception('Something went wrong.');
 		}
-	}	
+	}
+
+	public function del() {
+		$this->_db->del('images', array('id', '=', $this->imageId));
+		if (unlink($this->_filepath)) {
+		} else {
+			echo $this->_filepath;
+		}
+		die();
+	}
 }

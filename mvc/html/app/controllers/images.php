@@ -28,8 +28,11 @@ class Images extends Controller {
 		echo "</div>";
 		if ($image->userId == $this->_user->data()->id) {
 			// mine
+			echo "<a href=\"del/" . $id . "\"><button>Delete</button></a>";
 		} else {
 			// others
+			echo "<form action=\"comment/" . $id . "\">";
+			echo "<input type=\"text\" name=\"comment\" placeholder=\"Comment here...\">";
 		}
 		$this->view('includes/footer');
 	}

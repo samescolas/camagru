@@ -24,7 +24,9 @@
 	if (isset($data['images'])) {
 		foreach($data['images'] as $img) {
 			echo "<div class=\"user-image\">";
-			$img->display(75, False);
+				echo "<a href=\"images/" . $img->imageId . "\">";
+					$img->display(75, False);
+				echo "</a>";
 			echo "</div>";
 		}
 	}

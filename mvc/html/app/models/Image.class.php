@@ -30,6 +30,19 @@ class Image {
 		}
 	}
 
+	public function lookup() {
+		if (!isset($this->imageId)) {
+			return ;
+		}
+		$img = $this->_db->get('images', array('id', '=', $this->imageId));
+		$this->_filepath = $img->first()->location;
+		$this->title = $img->first()->title;
+		$this->description = $img->first()->description;
+		$this->userId = $img->first()->user_id;
+		$this->likes = $this->getLikes();
+		$this->comments = $this->getComments();
+	}
+
 	public function upload() {
 		if ($this->size !== false) {
 			$this->store();

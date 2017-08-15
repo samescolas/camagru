@@ -27,7 +27,6 @@ class Login extends Controller {
 			$validation = $this->validate_form();
 			if ($validation !== false && $validation->passed()) {
 				$this->loginUser();
-				Redirect::to('home');
 			} else if($validation !== false) {
 				$validation->displayErrors();
 			}
@@ -49,7 +48,7 @@ class Login extends Controller {
 		$login = $this->_user->login(Input::get('username'), Input::get('password'), $remember);
 		if (!$login) {
 			Session::flash('bad', 'Invalid login credentials');
-			Redirect::to('welcome');
+			Redirect::to('login');
 		}
 	}
 

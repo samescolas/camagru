@@ -8,7 +8,7 @@ class Images extends Controller {
 		$this->_user->shield();
 		$this->view('includes/header', array(
 			'scripts' => array('camagru'),
-			'stylesheets' => array('header', 'camagru'),
+			'stylesheets' => array('header', 'images'),
 			'navs' => array(
 				'Logout' => 'logout',
 				'Browse' => 'browse',
@@ -23,7 +23,14 @@ class Images extends Controller {
 			'image_id' => $id
 		));
 		$image->lookup();
-		$image->display();
+		echo "<div id=\"image-container\">";
+			$image->display();
+		echo "</div>";
+		if ($image->userId == $this->_user->data()->id) {
+			// mine
+		} else {
+			// others
+		}
 		$this->view('includes/footer');
 	}
 }

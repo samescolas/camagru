@@ -17,10 +17,16 @@
 	width: 100%;
 }
 
-.user-image > img {
-	width: 80%;
+.user-image > a {
+	width: 100%;
 	margin: 10px auto;
 	display: block;
+}
+
+.user-image > a > img {
+	width: 80%;
+	display: block;
+	margin: 0 auto;
 }
 
 #camera {

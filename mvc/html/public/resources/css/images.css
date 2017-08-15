@@ -1,0 +1,13 @@
+#image-container {
+	width: 100%;
+}
+
+img {
+	display: block;
+	width: 60%;
+	margin: auto;
+}
+
+#image-container h1, p {
+	text-align: center;
+}

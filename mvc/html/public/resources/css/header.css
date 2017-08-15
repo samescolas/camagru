@@ -24,7 +24,7 @@ body {
 	width: 80%;
 	height: 14vh;
 	background-color: #4242DD;
-	float: left;
+	float: right;
 }
 
 #logo-wrapper h1 {
@@ -45,7 +45,7 @@ body {
 #nav-wrapper li {
 	font-size: 2.2vmin;
 	float: right;
-	width: 17vw;
+	width: 12vw;
 	height: 100%;
 }
 

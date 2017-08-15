@@ -12,7 +12,7 @@ class Camagru extends Controller {
 			'navs' => array(
 				'Logout' => 'logout',
 				'Browse' => 'browse',
-				'Upload Photo' => 'upload',
+				'Upload Image' => 'upload',
 				'Profile' => 'profile'
 			)
 		));

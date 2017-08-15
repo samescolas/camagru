@@ -3,6 +3,7 @@
 }
 
 img {
+	padding-top: 5vmin;
 	display: block;
 	width: 60%;
 	margin: auto;

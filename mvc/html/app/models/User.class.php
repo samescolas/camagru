@@ -1,5 +1,7 @@
 <?php
 
+include __DIR__ . '/Image.class.php';
+
 class User {
 	private $_db;
 	private $_data;
@@ -80,12 +82,25 @@ class User {
 	}
 
 	public function getImages() {
+		$ret = array();
 		if (!$this->data()->id) {
 			return (false);
 		}
 		$images = $this->_db->get('images', array('user_id', '=', $this->data()->id))->results();
-		if (count($images))
-			return ($images);
+		if (count($images)) {
+			for ($i=0; $i<count($images); $i++) {
+				$ret[] = new Image(array(
+					'image_id' => $images[$i]->id,
+					'user_id' => $this->data()->id,
+					'title' => $images[$i]->title,
+					'description' => $images[$i]->description,
+					'filepath' => $images[$i]->location
+				));
+				$ret[$i]->getComments();
+				$ret[$i]->getLikes();
+			}
+			return ($ret);
+		}
 		return (false);
 	}
 

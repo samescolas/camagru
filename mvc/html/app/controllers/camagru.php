@@ -19,7 +19,11 @@ class Camagru extends Controller {
 	}
 
 	public function index($username = '') {
-		$this->view('camera/capture');
+		$userImages = $this->_user->getImages();
+		$this->view('camera/capture', array(
+			'overlayUrls' => array(),
+			'images' => $userImages
+		));
 		$this->view('includes/footer');
 	}
 }

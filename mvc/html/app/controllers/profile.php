@@ -22,8 +22,11 @@ class Profile extends Controller {
 	}
 
 	public function index($username = '') {
-		$images = $this->_user->getImages();
-		if ($images) {
+		$this->_images = $this->_user->getImages();
+		if ($this->_images) {
+			$this->view('home/profile', array ('images' => $this->_images));
+		}
+		/*
 			for ($i=0; $i<count($images); $i++) {
 				$this->_images[] = $this->model('Image', array (
 					'image_id' => $images[$i]->id,
@@ -35,8 +38,8 @@ class Profile extends Controller {
 				$this->_images[$i]->getComments();
 				$this->_images[$i]->getLikes();
 			}
-			$this->view('home/profile', array ('images' => $this->_images));
-		} else {
+		}
+		 */	else {
 			echo "You haven't taken any pictures yet, come back later!";
 		}
 		$this->view('includes/footer');

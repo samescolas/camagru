@@ -20,5 +20,14 @@
 	</div>
 </div>
 <div id="side-panel">
+<?php
+	if (isset($data['images'])) {
+		foreach($data['images'] as $img) {
+			echo "<div class=\"userImage\">";
+			$img->display();
+			echo "</div>";
+		}
+	}
+?>
 </div>
 </div>

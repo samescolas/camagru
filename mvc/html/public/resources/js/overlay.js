@@ -12,6 +12,7 @@
 			console.log("adding eventl listener");
 			targetImages[i].addEventListener('click', function(item, tar) {
 				overlay(item.target);
+				item.style.backgroundColor = 'blue';
 			});
 		}
 	}

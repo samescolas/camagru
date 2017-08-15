@@ -7,7 +7,7 @@ class Camagru extends Controller {
 		$this->_user = $this->model('User');
 		$this->_user->shield();
 		$this->view('includes/header', array(
-			'scripts' => array('camagru'),
+			'scripts' => array('camagru', 'scroll'),
 			'stylesheets' => array('header', 'camagru'),
 			'navs' => array(
 				'Logout' => 'logout',

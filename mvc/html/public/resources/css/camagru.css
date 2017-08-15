@@ -10,6 +10,7 @@
 	width: 29%;
 	height: 80vh;
 	float: right;
+	overflow: scroll;
 }
 
 #camera {

@@ -25,7 +25,6 @@
 	function startup() {
 		video = document.getElementById('video');
 		canvas1 = document.getElementById('canvas1');
-		canvas2 = document.getElementById('canvas2');
 		photo = document.getElementById('photo');
 		target = document.getElementById('target');
 		startbutton = document.getElementById('startbutton');
@@ -68,8 +67,6 @@
 			video.setAttribute('height', height);
 			canvas1.setAttribute('width', width);
 			canvas1.setAttribute('height', height);
-			canvas2.setAttribute('width', width);
-			canvas2.setAttribute('height', height);
 			streaming = true;
 		}
 		}, false);
@@ -182,13 +179,6 @@
 		}
 	}
 
-	function resize() {
-		width = screen.width * 0.22;
-		height = width / (4/3);
-		canvas1.width = width;
-		canvas1.height = height;
-	}
-  
 	// Capture a photo by fetching the current contents of the video
 	// and drawing it into a canvas1, then converting that to a PNG
 	// format data URL. By drawing it on an offscreen canvas1 and then
@@ -200,8 +190,6 @@
 		if (width && height) {
 			toggleStatus();
 
-			canvas1.width = width;
-			canvas1.height = height;
 			context.drawImage(video, 0, 0, width, height);
 		} else {
 			clearphoto();

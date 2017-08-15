@@ -118,18 +118,17 @@ footer {
 	background-color: #4242DD;
 	position: fixed;
 	bottom: 0;
-}
-
-footer p{
-	margin: 5px;
+	font-size: 2vmin;
 }
 
 footer #footer-1 {
+	padding: 10px 0 0 10px;
 	text-align: left;
 	float: left;
 }
 
 footer #footer-2 {
+	padding: 10px 10px 0 0;
 	text-align: right;
 	float: right;
 }

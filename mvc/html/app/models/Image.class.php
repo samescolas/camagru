@@ -30,6 +30,15 @@ class Image {
 		}
 	}
 
+	public function like($imageId, $userId) {
+		if ($imageId > 0 && $userId > 0) {
+			$this->_db->insert('likes', array(
+				'user_id' => $userId,
+				'image_id' => $imageId
+			));
+		}
+	}
+
 	public function lookup() {
 		if (!isset($this->imageId)) {
 			return ;

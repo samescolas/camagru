@@ -17,7 +17,10 @@ class Images extends Controller {
 		));
 	}
 
-	public function index($id = '') {
+	public function index($id = 0) {
+		if ($id <= 0) {
+			Redirect::to('home');
+		}
 		$image = $this->model('Image', array(
 			'image_id' => $id
 		));

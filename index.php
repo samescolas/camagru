@@ -1,28 +1,8 @@
 <?php
 
-require_once 'core/init.php';
+require_once __DIR__ . '/../app/init.php';
 
-if (Session::exists('success')) {
-	echo Session::flash('success');
-}
+$app = new App();
 
-if (Session::exists('home')) {
-	echo Session::flash('home');
-}
-
-$user = new User();
-
-if  ($user->isLoggedIn()) {
-?>
-	<p>Welcome,<a href="profile.php?user=<?php echo escape($user->data()->username); ?>"><?php echo escape($user->data()->username); ?>!</a></p>
-	<p> <a href="update.php">Update Account</a></p>
-	<p> <a href="changepassword.php">Change Password</a></p>
-	<p> <a href="logout.php">Logout</a></p>
-<?php
-} else {
-?>
-	<p><a href="login.php">Login, idiot!</a></p>
-<?php
-}
 
 ?>

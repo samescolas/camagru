@@ -38,9 +38,9 @@
 	margin: auto;
 }
 
-video,canvas {
-	width: 75%;
-	height: 58%;
+video, canvas {
+	width: 100%;
+	height: 78%;
 }
 
 button {
@@ -50,6 +50,14 @@ button {
 
 canvas, #savebutton, #deletebutton {
 	display: none;
+}
+
+#startbutton {
+	height: 5vmin;
+	width: 5vmin;
+	border-radius: 100%;
+	background-color: black;
+	color: red;
 }
 
 #overlay-images {

@@ -5,7 +5,7 @@
 			<img id="photo" alt="The screen capture will appear in this box.">
 		</canvas>
 		<br />
-		<button id="startbutton">Take photo</button>
+		<button id="startbutton">O</button>
 		<button id="savebutton">Save</button>
 		<button id="deletebutton">Delete</button>
 	</div>

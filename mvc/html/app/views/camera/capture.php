@@ -10,12 +10,12 @@
 		<button id="deletebutton">Delete</button>
 	</div>
 	<div id="overlay-panel">
-	<ul>
-		<li><a href="#"><img src="">IMG1</li></a>
-		<li><a href="#"><img src="">IMG2</li></a>
-		<li><a href="#"><img src="">IMG3</li></a>
-		<li><a href="#"><img src="">IMG4</li></a>
-		<li><a href="#"><img src="">IMG5</li></a>
+	<ul id="overlay-images">
+		<li><a href="#"><img src="http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Alien-PNG-Transparent-Image-500x623.png"></li></a>
+		<li><a href="#"><img src="http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Alien-PNG-Transparent-Image-500x623.png"></li></a>
+		<li><a href="#"><img src="http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Alien-PNG-Transparent-Image-500x623.png"></li></a>
+		<li><a href="#"><img src="http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Alien-PNG-Transparent-Image-500x623.png"></li></a>
+		<li><a href="#"><img src="http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Alien-PNG-Transparent-Image-500x623.png"></li></a>
 	</ul>
 	</div>
 </div>

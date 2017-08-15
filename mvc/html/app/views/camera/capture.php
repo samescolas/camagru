@@ -1,9 +1,10 @@
 <div id="camera-wrapper">
 	<div id="camera">
 		<video id="video">Video stream not available.</video>
-		<canvas id="canvas">
+		<canvas id="canvas1">
 			<img id="photo" alt="The screen capture will appear in this box.">
 		</canvas>
+		<canvas id="canvas2"></canvas>
 		<br />
 		<button id="startbutton">O</button>
 		<button id="savebutton">Save</button>

@@ -15,7 +15,7 @@
 	// will be set by the startup() function.
 
 	var video = null;
-	var canvas = null;
+	var canvas1 = null;
 	var photo = null;
 	var target = null;
 	var startbutton = null;
@@ -24,7 +24,8 @@
 
 	function startup() {
 		video = document.getElementById('video');
-		canvas = document.getElementById('canvas');
+		canvas1 = document.getElementById('canvas1');
+		canvas2 = document.getElementById('canvas2');
 		photo = document.getElementById('photo');
 		target = document.getElementById('target');
 		startbutton = document.getElementById('startbutton');
@@ -65,17 +66,16 @@
 	      
 			video.setAttribute('width', width);
 			video.setAttribute('height', height);
-			canvas.setAttribute('width', width);
-			canvas.setAttribute('height', height);
+			canvas1.setAttribute('width', width);
+			canvas1.setAttribute('height', height);
+			canvas2.setAttribute('width', width);
+			canvas2.setAttribute('height', height);
 			streaming = true;
 		}
 		}, false);
 
 		startbutton.addEventListener('click', function(ev) {
 			takepicture();
-			//var data = canvas.toDataURL('image/png');
-			//photo.setAttribute('src', data);
-			//sendpicture(data);
 			ev.preventDefault();
 		}, false);
 
@@ -89,22 +89,17 @@
 			clearphoto();
 		}, false);
 
-		video.addEventListener('resize', function(event) {
-			event.stopPropagation();
-		});
-
-		canvas.addEventListener('resize', function(event) {
-			event.stopPropagation();
-		});
-
 		toggleStatus();
 		toggleStatus();
-		//clearphoto();
+
+		while (streaming) {
+			var context = canvas1.getContext('2d');
+			context.drawImage(video, 0, 0);
+		}
 	}
 
 	function savePhoto() {
-		var data = canvas.toDataURL('image/png');
-		//photo.setAttribute('src', data);
+		var data = canvas1.toDataURL('image/png');
 		sendpicture(data);
 	}
 
@@ -112,11 +107,11 @@
 	// captured.
 
 	function clearphoto() {
-		var context = canvas.getContext('2d');
+		var context = canvas1.getContext('2d');
 		context.fillStyle = "#AAA";
-		context.fillRect(0, 0, canvas.width, canvas.height);
+		context.fillRect(0, 0, canvas1.width, canvas1.height);
 
-		var data = canvas.toDataURL('image/png');
+		var data = canvas1.toDataURL('image/png');
 		photo.setAttribute('src', data);
 	}
 
@@ -131,9 +126,10 @@
 		: 0);
 	}
 
+
+	// Convert base64 encoded string to uIntArray
+	// developer.mozilla.org/en-US/docs/Web/JavaScript/Base64_encoding_and_decoding
 	function base64DecToArr(sBase64, nBlocksSize) {
-		// convert base64 encoded string to uIntArray
-		// developer.mozilla.org/en-US/docs/Web/JavaScript/Base64_encoding_and_decoding
 		var sB64Enc = sBase64.replace(/[^A-Za-z0-9\+\/]/g, "");
 		var nInLen = sB64Enc.length;
 		var nOutLen = nBlocksSize ? 
@@ -173,13 +169,13 @@
 	function toggleStatus() {
 		if (video.style.display == "none") {
 			video.style.display = "inherit";
-			canvas.style.display = "none";
+			canvas1.style.display = "none";
 			startbutton.style.display = "inherit";
 			savebutton.style.display = "none";
 			deletebutton.style.display = "none";
 		} else {
 			video.style.display = "none";
-			canvas.style.display = "inherit";
+			canvas1.style.display = "inherit";
 			startbutton.style.display = "none";
 			savebutton.style.display = "inherit";
 			deletebutton.style.display = "inherit";
@@ -189,23 +185,23 @@
 	function resize() {
 		width = screen.width * 0.22;
 		height = width / (4/3);
-		canvas.width = width;
-		canvas.height = height;
+		canvas1.width = width;
+		canvas1.height = height;
 	}
   
 	// Capture a photo by fetching the current contents of the video
-	// and drawing it into a canvas, then converting that to a PNG
-	// format data URL. By drawing it on an offscreen canvas and then
+	// and drawing it into a canvas1, then converting that to a PNG
+	// format data URL. By drawing it on an offscreen canvas1 and then
 	// drawing that to the screen, we can change its size and/or apply
 	// other changes before drawing it.
 
 	function takepicture() {
-		var context = canvas.getContext('2d');
+		var context = canvas1.getContext('2d');
 		if (width && height) {
 			toggleStatus();
 
-			canvas.width = width;
-			canvas.height = height;
+			canvas1.width = width;
+			canvas1.height = height;
 			context.drawImage(video, 0, 0, width, height);
 		} else {
 			clearphoto();

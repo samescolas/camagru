@@ -6,7 +6,7 @@ class Email extends Controller {
 	public function __construct() {
 		$this->_user = $this->model('User');
 		$this->view('includes/header', array(
-			'stylesheets' => array('header'),
+			'stylesheets' => array('header', 'form'),
 			'navs' => array('Logout' => 'logout')
 		));
 		if (!$this->_user->isLoggedIn()) {

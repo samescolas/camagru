@@ -51,13 +51,15 @@ class Image {
 		return ($this->comments);
 	}
 
-	public function display($width = 25) {
+	public function display($width = 25, $all=True) {
 		echo "<img src=\"" . $this->_filepath . "\" width=\"".$width."%\">";
-		echo "<h1>".$this->title."</h1>";
-		echo "<p class=\"likes\">" . $this->getLikes() . "</p>";
-		echo "<p>".$this->description."</p>";
-		foreach($this->comments as $c) {
-			echo "<p class=\"comment\">" . $c->comment . "</p>";
+		if ($all) {
+			echo "<h1>".$this->title."</h1>";
+			echo "<p class=\"likes\">" . $this->getLikes() . "</p>";
+			echo "<p>".$this->description."</p>";
+			foreach($this->comments as $c) {
+				echo "<p class=\"comment\">" . $c->comment . "</p>";
+			}
 		}
 	}
 

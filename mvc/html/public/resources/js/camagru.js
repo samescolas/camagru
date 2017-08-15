@@ -99,7 +99,6 @@
 
 		toggleStatus();
 		toggleStatus();
-		sideScroll();
 		//clearphoto();
 	}
 

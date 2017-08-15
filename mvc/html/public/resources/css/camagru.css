@@ -13,6 +13,16 @@
 	overflow: scroll;
 }
 
+.user-image {
+	width: 100%;
+}
+
+.user-image > img {
+	width: 80%;
+	margin: 10px auto;
+	display: block;
+}
+
 #camera {
 	height: 77%;
 	width: 100%;

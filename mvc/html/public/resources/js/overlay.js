@@ -2,7 +2,7 @@
 
 	function overlay(image) {
 		var canvas = document.getElementById("canvas");
-		canvas.getContext("2d").drawImage(image, 10, 10);
+		canvas.getContext("2d").drawImage(image, 0, 0);
 		image.setAttribute('crossOrigin', 'anonymous');
 	}
 

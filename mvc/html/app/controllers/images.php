@@ -7,7 +7,6 @@ class Images extends Controller {
 		$this->_user = $this->model('User');
 		$this->_user->shield();
 		$this->view('includes/header', array(
-			'scripts' => array('camagru'),
 			'stylesheets' => array('header', 'images'),
 			'navs' => array(
 				'Logout' => 'logout',

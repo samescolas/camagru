@@ -152,7 +152,12 @@ class User {
 		$link = "http://" . $_SERVER['SERVER_NAME'] . "/verify/" . $token . "/" . $fields['username'];
 		$msg = "Welcome to Camagru, " . $fields['username'] .
 			"!\nPlease follow this link to verify your email address.\n";
-		mail($fields['email'], "Email Verification", $msg . $link);
+		mail(
+			$fields['email'],
+			"Email Verification",
+			$msg . $link,
+			null,
+			'-f guru@camagru.com');
 	}
 
 	public function login($username = null, $password = null, $remember = false) {

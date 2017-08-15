@@ -156,8 +156,7 @@ class User {
 			$fields['email'],
 			"Email Verification",
 			$msg . $link,
-			null,
-			'-f guru@camagru.com');
+			'From: guru@camagru.com');
 	}
 
 	public function login($username = null, $password = null, $remember = false) {

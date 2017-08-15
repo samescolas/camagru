@@ -12,6 +12,10 @@
 	<div id="overlay-panel">
 	<ul id="overlay-images">
 		<li class="overlay-image"><img src="resources/imgs/alien.png"></li>
+		<li class="overlay-image"><img src="resources/imgs/cat.png"></li>
+		<li class="overlay-image"><img src="resources/imgs/cactus.png"></li>
+		<li class="overlay-image"><img src="resources/imgs/wave.png"></li>
+		<li class="overlay-image"><img src="resources/imgs/grass.png"></li>
 	</ul>
 	</div>
 </div>

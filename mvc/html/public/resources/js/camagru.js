@@ -89,17 +89,14 @@
 			clearphoto();
 		}, false);
 
-		window.addEventListener('resize', function(event) {
-			width = screen.width * 0.22;
-			height = width / (4/3);
-			video.setAttribute('width', width);
-			video.setAttribute('height', height);
-			canvas.setAttribute('width', width);
-			event.preventDefault();
-			canvas.setAttribute('height', height);
-			alert("resize!");
+		video.addEventListener('resize', function(event) {
+			event.stopPropagation();
 		});
-		
+
+		canvas.addEventListener('resize', function(event) {
+			event.stopPropagation();
+		});
+
 		toggleStatus();
 		toggleStatus();
 		//clearphoto();

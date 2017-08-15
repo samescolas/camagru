@@ -11,9 +11,11 @@
 	</div>
 	<div id="overlay-panel">
 	<ul>
-		<li>IMG1</li>
-		<li>IMG2</li>
-		<li>IMG3</li>
+		<li><a href="#"><img src="">IMG1</li></a>
+		<li><a href="#"><img src="">IMG2</li></a>
+		<li><a href="#"><img src="">IMG3</li></a>
+		<li><a href="#"><img src="">IMG4</li></a>
+		<li><a href="#"><img src="">IMG5</li></a>
 	</ul>
 	</div>
 </div>

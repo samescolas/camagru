@@ -9,15 +9,19 @@ body {
 	font-size: 18px;
 }
 
+#header {
+	width: 100%;
+}
+
 #logo-wrapper {
-	width: 20vw;
+	width: 20%;
 	height: 14vh;
 	background-color: #4242DD;
 	float: left;
 }
 
 #nav-wrapper {
-	width: 73.3vw;
+	width: 80%;
 	height: 14vh;
 	background-color: #4242DD;
 	float: left;
@@ -30,7 +34,7 @@ body {
 }
 
 #nav-wrapper ul {
-	width: 75vw;
+	width: 75%;
 	height: 100%;
 	list-style-type: none;
 	margin: 0;

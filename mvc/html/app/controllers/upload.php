@@ -34,7 +34,7 @@ class Upload extends Controller {
 			}
 		}
 		$this->view('includes/header', array(
-			'stylesheets' => array('header'),
+			'stylesheets' => array('header', 'form'),
 			'navs' => array(
 				'Logout' => 'logout',
 				'Browse' => 'browse',

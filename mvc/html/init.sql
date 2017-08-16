@@ -50,7 +50,7 @@ CREATE TABLE likes (
 	dt DATETIME NOT NULL DEFAULT NOW(),
 	PRIMARY KEY (id),
 	FOREIGN KEY (user_id) REFERENCES users(id),
-	FOREIGN KEY (image_id) REFERENCES images(id)
+	FOREIGN KEY (image_id) REFERENCES images(id) ON DELETE CASCADE
 );
 
 CREATE TABLE email_verification (
@@ -69,5 +69,5 @@ CREATE TABLE comments (
 	dt DATETIME NOT NULL DEFAULT NOW(),
 	PRIMARY KEY (id),
 	FOREIGN KEY (user_id) REFERENCES users(id),
-	FOREIGN KEY (image_id) REFERENCES images(id)
+	FOREIGN KEY (image_id) REFERENCES images(id) ON DELETE CASCADE
 );

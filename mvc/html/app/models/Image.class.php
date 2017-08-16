@@ -39,6 +39,46 @@ class Image {
 		}
 	}
 
+	public function overlayImage($overlayId) {
+		$filepath = __DIR__ . "/../../public/resources/imgs/$overlayId.png";
+		return ($this->overlay(array(array(
+			'filepath' => $filepath,
+			'dstX' => 0,
+			'dstY' => 100,
+			'srcX' => 0,
+			'srcY' => 0,
+			'srcW' => 500,
+			'srcH' => 500
+		))));
+	}
+
+	private function overlay($overlayImages) {
+		if (!isset($overlayImages)) {
+			return (false);
+		}
+		$image = imagecreatefrompng($this->_filepath);
+		$image = imagescale($image, 500);
+		foreach($overlayImages as $i) {
+			$overlayImg = imagecreatefrompng($i['filepath']);
+			$overlayImg = imagescale($overlayImg, 500);
+			$success = imagecopy(
+				$image,
+				$overlayImg,
+				$i['dstX'],
+				$i['dstY'],
+				$i['srcX'],
+				$i['srcY'],
+				$i['srcW'],
+				$i['srcH']
+			);
+			if (!$success) {
+				imagedestroy($image);
+				return (false);
+			}
+		}
+		return ($image);
+	}
+
 	public function lookup() {
 		if (!isset($this->imageId)) {
 			return ;
@@ -90,7 +130,7 @@ class Image {
 	public function store() {
 		if (!file_exists($this->_saveDir))
 			mkdir($this->_saveDir);
-		$this->_filepath = $this->_saveDir . Token::create() . '.png';
+		$this->_filepath = $this->_saveDir . Token::create() . '.pngggg';
 		file_put_contents($this->_filepath, $this->image);
 		$q = $this->_db->insert('images', array(
 			'user_id' => $this->userId,

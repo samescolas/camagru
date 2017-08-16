@@ -9,11 +9,11 @@
 	</div>
 	<div id="overlay-panel">
 	<ul id="overlay-images">
-		<li class="overlay-image"><img src="resources/imgs/alien.png"></li>
-		<li class="overlay-image"><img src="resources/imgs/cat.png"></li>
-		<li class="overlay-image"><img src="resources/imgs/cactus.png"></li>
-		<li class="overlay-image"><img src="resources/imgs/wave.png"></li>
-		<li class="overlay-image"><img src="resources/imgs/grass.png"></li>
+		<li class="overlay-image"><img id="alien" src="resources/imgs/alien.png"></li>
+		<li class="overlay-image"><img id="cat" src="resources/imgs/cat.png"></li>
+		<li class="overlay-image"><img id="cactus" src="resources/imgs/cactus.png"></li>
+		<li class="overlay-image"><img id="wave" src="resources/imgs/wave.png"></li>
+		<li class="overlay-image"><img id="grass" src="resources/imgs/grass.png"></li>
 	</ul>
 	</div>
 </div>

@@ -82,13 +82,13 @@ canvas, #savebutton, #deletebutton {
 
 #overlay-images li {
 	float: left;
-	margin-top: 5%;
 	width: 20%;
+	height: 100%;
 }
 
 #overlay-images img {
 	display: block;
-	margin: 0 auto;
+	margin: 50% auto;
 	max-width: 80%;
-	height: 80%;
+	height: 40%;
 }

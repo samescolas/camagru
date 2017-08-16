@@ -5,6 +5,8 @@ ENV SITE_CONF sites-available/000-default.conf
 
 COPY ./ /var/www/html
 
+RUN mkdir -p /var/www/html/public/resource/uploads
+
 RUN mv /var/www/html/.vimrc /root/.vimrc
 
 RUN apt-get update && apt-get upgrade && apt-get install -y \

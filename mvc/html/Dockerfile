@@ -13,6 +13,7 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
 	sendmail-bin \
 	php \
 	php7.0-mysql \
+	php-gd \
 	mysql-server \
 	apache2 \
 	vim \

@@ -13,9 +13,9 @@
 		for (var i=0; i<targetImages.length; i++) {
 			targetImages[i].addEventListener('click', function(item) {
 				if (item.target.classList.contains("active-overlay-image")) {
-					item.target.parentNode.style.backgroundColor = 'inherit';
+					item.target.parentNode.style.backgroundColor = "inherit";
 				} else {
-					item.target.parentNode.style.backgroundColor = '#4242DD';
+					item.target.parentNode.style.backgroundColor = "#4242DD";
 				}
 				item.target.classList.toggle("active-overlay-image");
 			});

@@ -89,16 +89,27 @@
 		}, false);
 
 		savebutton.addEventListener('click', function(ev) {
+			removeActive();
 			savePhoto();
 			toggleStatus();
 		}, false);
 
 		deletebutton.addEventListener('click', function(ev) {
+			removeActive();
 			toggleStatus();
 			clearphoto();
 		}, false);
 
 
+	}
+
+	function removeActive() {
+		var active = document.getElementsByClassName("active-overlay-image");
+
+		for (var i=0; i<active.length; i++) {
+			active[i].parentNode.style.backgroundColor = "inherit";
+			active[i].classList.remove("active-overlay-image");
+		}
 	}
 
 	function updateCanvas() {
@@ -249,7 +260,8 @@
 	// format data URL. By drawing it on an offscreen canvas1 and then
 	// drawing that to the screen, we can change its size and/or apply
 	// other changes before drawing it.
-
+	//
+	
 	function takepicture() {
 		if (width && height) {
 			toggleStatus();

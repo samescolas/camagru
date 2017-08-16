@@ -19,7 +19,9 @@ class Capture extends Controller {
 				'user_id' => $this->_user->data()->id
 			));
 			$image->upload();
-			$image->display();
+			echo "<a href=\"images/" . $image->imageId . "\">";
+			$image->display(25, False);
+			echo "</a>";
 		} else {
 			Redirect::to('camagru');
 		}

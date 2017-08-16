@@ -68,8 +68,20 @@
 			canvas1.setAttribute('width', width);
 			canvas1.setAttribute('height', height);
 			streaming = true;
+			requestAnimationFrame(updateCanvas);
 		}
 		}, false);
+
+		//video.addEventListener('play', function() {
+			//var $this = this;
+			//var ctx = canvas1.getContext('2d');
+			//(function loop() {
+				//if (!$this.paused && !$this.ended) {
+					//ctx.drawImage($this, 0, 0, width, height);
+					//setTimeout(loop, 1000, 50);
+				//}
+			//})();
+		//}, 0);
 
 		startbutton.addEventListener('click', function(ev) {
 			takepicture();
@@ -86,13 +98,57 @@
 			clearphoto();
 		}, false);
 
-		toggleStatus();
-		toggleStatus();
 
-		while (streaming) {
-			var context = canvas1.getContext('2d');
-			context.drawImage(video, 0, 0);
+	}
+
+	function updateCanvas() {
+		var images = document.getElementsByClassName('active-overlay-image');
+
+		canvas1.getContext('2d').drawImage(video, 0, 0, width, height);
+		for (var i=0; i<images.length; i++) {
+			if (images[i].id == 'wave') {
+				canvas1.getContext('2d').drawImage(
+					images[i],
+					0,
+					0,
+					canvas1.width,
+					canvas1.height
+				);
+			} else if (images[i].id == 'cat') {
+				canvas1.getContext('2d').drawImage(
+					images[i],
+					canvas1.width * 0.7,
+					canvas1.height * 0.7,
+					150,
+					150
+				);
+			} else if (images[i].id == 'cactus') {
+				canvas1.getContext('2d').drawImage(
+					images[i],
+					0,
+					canvas1.height * 0.4,
+					150,
+					150
+				);
+			} else if (images[i].id == 'alien') {
+				canvas1.getContext('2d').drawImage(
+					images[i],
+					canvas1.width * 0.3,
+					canvas1.height * 0.6,
+					images[i].width,
+					images[i].height
+				);
+			} else if (images[i].id == 'grass') {
+				canvas1.getContext('2d').drawImage(
+					images[i], 
+					0,
+					0,
+					canvas1.width,
+					canvas1.height
+				);
+			}
 		}
+		requestAnimationFrame(updateCanvas);
 	}
 
 	function savePhoto() {
@@ -154,7 +210,11 @@
 
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("target").innerHTML = this.responseText;
+				var newEl = document.createElement("div");
+				newEl.classList.add("user-image");
+				newEl.innerHTML = this.responseText;
+				document.getElementById("side-panel").append(newEl);
+
 			}
 		};
 
@@ -164,19 +224,24 @@
 	}
 
 	function toggleStatus() {
-		if (video.style.display == "none") {
-			video.style.display = "inherit";
-			canvas1.style.display = "none";
+		if (video.paused) {
+			video.play();
 			startbutton.style.display = "inherit";
 			savebutton.style.display = "none";
 			deletebutton.style.display = "none";
 		} else {
-			video.style.display = "none";
-			canvas1.style.display = "inherit";
+			video.pause();
 			startbutton.style.display = "none";
 			savebutton.style.display = "inherit";
 			deletebutton.style.display = "inherit";
 		}
+	}
+
+	function overlay(image, x, y, width, height) {
+		console.log("overlaying image...");
+		console.log(image);
+		canvas1.getContext('2d').drawImage(image, x, y, width, height);
+		image.setAttribute('crossOrigin', 'anonymous');
 	}
 
 	// Capture a photo by fetching the current contents of the video
@@ -186,11 +251,9 @@
 	// other changes before drawing it.
 
 	function takepicture() {
-		var context = canvas1.getContext('2d');
 		if (width && height) {
 			toggleStatus();
-
-			context.drawImage(video, 0, 0, width, height);
+			canvas1.getContext('2d').drawImage(video, 0, 0, width, height);
 		} else {
 			clearphoto();
 		}

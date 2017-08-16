@@ -40,9 +40,14 @@
 }
 
 video, #canvas1 {
+	display: block;
 	margin: 0 auto;
 	width: 80%;
 	padding-top: 2vmin;
+}
+
+video {
+	display: none;
 }
 
 #overlay-panel {
@@ -56,7 +61,7 @@ button {
 	text-align: center;
 }
 
-canvas, #savebutton, #deletebutton {
+#savebutton, #deletebutton {
 	display: none;
 }
 
@@ -67,6 +72,7 @@ canvas, #savebutton, #deletebutton {
 	border-radius: 100%;
 	background-color: black;
 	color: red;
+	display: block;
 }
 
 #overlay-images {

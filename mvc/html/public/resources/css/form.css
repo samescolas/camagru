@@ -40,7 +40,7 @@ input[type="text"], input[type="password"], input[type="email"] {
 }
 
 input[type="submit"] {
-	width: 7vw;
+	width: 12vw;
 	height: 3vmin;
 	margin-top: 15px;
 }

@@ -5,7 +5,7 @@
 		<br />
 		<button id="startbutton">O</button>
 		<button id="savebutton">Save</button>
-		<button id="deletebutton">Delete</button>
+		<button id="deletebutton">Take another picture</button>
 	</div>
 	<div id="overlay-panel">
 	<ul id="overlay-images">

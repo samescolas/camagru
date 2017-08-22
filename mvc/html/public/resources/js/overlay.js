@@ -10,15 +10,18 @@
 	function addListeners() {
 		var targetImages = document.getElementsByClassName("overlay-image");
 		var canvas = document.getElementById("canvas1");
-		var video = document.getElementById("video");
 		var saveButton = document.getElementById("savebutton");
 
 		for (var i=0; i<targetImages.length; i++) {
 			targetImages[i].addEventListener('click', function(item) {
+				let vid = document.getElementById("video");
 				if (item.target.classList.contains("active-overlay-image")) {
 					item.target.parentNode.style.backgroundColor = "inherit";
+					if (vid.paused && document.getElementsByClassName("active-overlay-image").length < 2) {
+						saveButton.style.display = "none";
+					}
 				} else {
-					if (saveButton.style.display == "none") {
+					if (vid.paused) {
 						saveButton.style.display = "inherit";
 					}
 					item.target.parentNode.style.backgroundColor = "#4242DD";
@@ -28,5 +31,5 @@
 		}
 	}
 
-	window.addEventListener("load", addListeners);
+	window.addEventListener("load", addListeners, false);
 })();

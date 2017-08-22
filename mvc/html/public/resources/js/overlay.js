@@ -15,18 +15,20 @@
 		for (var i=0; i<targetImages.length; i++) {
 			targetImages[i].addEventListener('click', function(item) {
 				let vid = document.getElementById("video");
-				if (item.target.classList.contains("active-overlay-image")) {
-					item.target.parentNode.style.backgroundColor = "inherit";
-					if (vid.paused && document.getElementsByClassName("active-overlay-image").length < 2) {
-						saveButton.style.display = "none";
+				if (item.target.nodeName !== "LI") {
+					if (item.target.classList.contains("active-overlay-image")) {
+						item.target.parentNode.style.backgroundColor = "inherit";
+						if (vid.paused && document.getElementsByClassName("active-overlay-image").length < 2) {
+							saveButton.style.display = "none";
+						}
+					} else {
+						if (vid.paused) {
+							saveButton.style.display = "inherit";
+						}
+						item.target.parentNode.style.backgroundColor = "#4242DD";
 					}
-				} else {
-					if (vid.paused) {
-						saveButton.style.display = "inherit";
-					}
-					item.target.parentNode.style.backgroundColor = "#4242DD";
+					item.target.classList.toggle("active-overlay-image");
 				}
-				item.target.classList.toggle("active-overlay-image");
 			});
 		}
 	}

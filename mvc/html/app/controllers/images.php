@@ -25,14 +25,15 @@ class Images extends Controller {
 			'image_id' => $id
 		));
 		$image->lookup();
-		echo "<div id=\"image-container\">";
-			$image->display();
-		echo "</div>";
 		if ($image->userId == $this->_user->data()->id) {
-			// mine
+			echo "<div id=\"image-container\">";
+				$image->displayEditMode();
+			echo "</div>";
 			echo "<a href=\"del/" . $id . "\"><button>Delete</button></a>";
 		} else {
-			// others
+			echo "<div id=\"image-container\">";
+				$image->display();
+			echo "</div>";
 			echo "<form action=\"comment/" . $id . "\">";
 			echo "<input type=\"text\" name=\"comment\" placeholder=\"Comment here...\">";
 		}

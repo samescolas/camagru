@@ -11,6 +11,7 @@ class Camagru extends Controller {
 			'stylesheets' => array('header', 'camagru'),
 			'navs' => array(
 				'Logout' => 'logout',
+				'Profile' => 'profile',
 				'Browse' => 'browse',
 				'Upload Image' => 'upload'
 			)

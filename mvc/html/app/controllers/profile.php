@@ -26,20 +26,7 @@ class Profile extends Controller {
 		if ($this->_images) {
 			$this->view('home/profile', array ('images' => $this->_images));
 		}
-		/*
-			for ($i=0; $i<count($images); $i++) {
-				$this->_images[] = $this->model('Image', array (
-					'image_id' => $images[$i]->id,
-					'user_id' => $this->_user->data()->id,
-					'title' => $images[$i]->title,
-					'description' => $images[$i]->description,
-					'filepath' => $images[$i]->location	
-				));
-				$this->_images[$i]->getComments();
-				$this->_images[$i]->getLikes();
-			}
-		}
-		 */	else {
+		 else {
 			echo "You haven't taken any pictures yet, come back later!";
 		}
 		$this->view('includes/footer');

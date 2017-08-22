@@ -127,6 +127,14 @@ class Image {
 		}
 	}
 
+	public function displayEditMode($width=25) {
+		echo "<img src=\"" . $this->_filepath . "\" width=\"" . $width . "%\">";
+		echo "<div id=\"title-wrapper\">";
+		echo "<h1><input type=\"text\" value=\"" . $this->title . "\"/><h1>";
+		echo "</div>";
+		echo "<p><input type=\"text\" value=\"" . $this->description . "\"/></p>";
+	}
+
 	public function store() {
 		if (!file_exists($this->_saveDir))
 			mkdir($this->_saveDir);

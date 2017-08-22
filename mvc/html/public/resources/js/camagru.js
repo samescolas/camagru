@@ -3,33 +3,27 @@
 	// width to the value defined here, but the height will be
 	// calculated based on the aspect ratio of the input stream.
 
-	var width = 320;    // We will scale the photo width to this
-	var height = 0;     // This will be computed based on the input stream
-
-	// |streaming| indicates whether or not we're currently streaming
-	// video from the camera. Obviously, we start at false.
+	var width = 320;
+	var height = 0;
 
 	var streaming = false;
 
-	// The various HTML elements we need to configure or control. These
-	// will be set by the startup() function.
-
 	var video = null;
-	var canvas1 = null;
+	var canvas = null;
 	var photo = null;
 	var target = null;
-	var startbutton = null;
-	var savebutton = null;
-	var deletebutton = null;
+	var captureButton = null;
+	var saveButton = null;
+	var deleteButton = null;
 
 	function startup() {
 		video = document.getElementById('video');
-		canvas1 = document.getElementById('canvas1');
+		canvas = document.getElementById('canvas1');
 		photo = document.getElementById('photo');
 		target = document.getElementById('target');
-		startbutton = document.getElementById('startbutton');
-		savebutton = document.getElementById('savebutton');
-		deletebutton = document.getElementById('deletebutton');
+		captureButton = document.getElementById('startbutton');
+		saveButton = document.getElementById('savebutton');
+		deleteButton = document.getElementById('deletebutton');
 
 		navigator.getMedia = ( navigator.getUserMedia ||
 			   navigator.webkitGetUserMedia ||
@@ -65,42 +59,29 @@
 	      
 			video.setAttribute('width', width);
 			video.setAttribute('height', height);
-			canvas1.setAttribute('width', width);
-			canvas1.setAttribute('height', height);
+			canvas.setAttribute('width', width);
+			canvas.setAttribute('height', height);
 			streaming = true;
 			requestAnimationFrame(updateCanvas);
 		}
 		}, false);
 
-		//video.addEventListener('play', function() {
-			//var $this = this;
-			//var ctx = canvas1.getContext('2d');
-			//(function loop() {
-				//if (!$this.paused && !$this.ended) {
-					//ctx.drawImage($this, 0, 0, width, height);
-					//setTimeout(loop, 1000, 50);
-				//}
-			//})();
-		//}, 0);
-
-		startbutton.addEventListener('click', function(ev) {
+		captureButton.addEventListener('click', function(ev) {
 			takepicture();
 			ev.preventDefault();
 		}, false);
 
-		savebutton.addEventListener('click', function(ev) {
+		saveButton.addEventListener('click', function(ev) {
 			removeActive();
 			savePhoto();
 			toggleStatus();
 		}, false);
 
-		deletebutton.addEventListener('click', function(ev) {
+		deleteButton.addEventListener('click', function(ev) {
 			removeActive();
 			toggleStatus();
 			clearphoto();
 		}, false);
-
-
 	}
 
 	function removeActive() {
@@ -115,47 +96,47 @@
 	function updateCanvas() {
 		var images = document.getElementsByClassName('active-overlay-image');
 
-		canvas1.getContext('2d').drawImage(video, 0, 0, width, height);
+		canvas.getContext('2d').drawImage(video, 0, 0, width, height);
 		for (var i=0; i<images.length; i++) {
 			if (images[i].id == 'wave') {
-				canvas1.getContext('2d').drawImage(
+				canvas.getContext('2d').drawImage(
 					images[i],
 					0,
 					0,
-					canvas1.width,
-					canvas1.height
+					canvas.width,
+					canvas.height
 				);
 			} else if (images[i].id == 'cat') {
-				canvas1.getContext('2d').drawImage(
+				canvas.getContext('2d').drawImage(
 					images[i],
-					canvas1.width * 0.7,
-					canvas1.height * 0.7,
+					canvas.width * 0.7,
+					canvas.height * 0.7,
 					150,
 					150
 				);
 			} else if (images[i].id == 'cactus') {
-				canvas1.getContext('2d').drawImage(
+				canvas.getContext('2d').drawImage(
 					images[i],
 					0,
-					canvas1.height * 0.4,
+					canvas.height * 0.4,
 					150,
 					150
 				);
 			} else if (images[i].id == 'alien') {
-				canvas1.getContext('2d').drawImage(
+				canvas.getContext('2d').drawImage(
 					images[i],
-					canvas1.width * 0.3,
-					canvas1.height * 0.6,
+					canvas.width * 0.3,
+					canvas.height * 0.6,
 					images[i].width,
 					images[i].height
 				);
 			} else if (images[i].id == 'grass') {
-				canvas1.getContext('2d').drawImage(
+				canvas.getContext('2d').drawImage(
 					images[i], 
 					0,
 					0,
-					canvas1.width,
-					canvas1.height
+					canvas.width,
+					canvas.height
 				);
 			}
 		}
@@ -163,7 +144,7 @@
 	}
 
 	function savePhoto() {
-		var data = canvas1.toDataURL('image/png');
+		var data = canvas.toDataURL('image/png');
 		sendpicture(data);
 	}
 
@@ -171,11 +152,11 @@
 	// captured.
 
 	function clearphoto() {
-		var context = canvas1.getContext('2d');
+		var context = canvas.getContext('2d');
 		context.fillStyle = "#AAA";
-		context.fillRect(0, 0, canvas1.width, canvas1.height);
+		context.fillRect(0, 0, canvas.width, canvas.height);
 
-		var data = canvas1.toDataURL('image/png');
+		var data = canvas.toDataURL('image/png');
 		photo.setAttribute('src', data);
 	}
 
@@ -237,35 +218,34 @@
 	function toggleStatus() {
 		if (video.paused) {
 			video.play();
-			startbutton.style.display = "inherit";
-			savebutton.style.display = "none";
-			deletebutton.style.display = "none";
+			captureButton.style.display = "inherit";
+			saveButton.style.display = "none";
+			deleteButton.style.display = "none";
 		} else {
 			video.pause();
-			startbutton.style.display = "none";
-			savebutton.style.display = "inherit";
-			deletebutton.style.display = "inherit";
+			captureButton.style.display = "none";
+			saveButton.style.display = "inherit";
+			deleteButton.style.display = "inherit";
 		}
 	}
 
 	function overlay(image, x, y, width, height) {
 		console.log("overlaying image...");
 		console.log(image);
-		canvas1.getContext('2d').drawImage(image, x, y, width, height);
+		canvas.getContext('2d').drawImage(image, x, y, width, height);
 		image.setAttribute('crossOrigin', 'anonymous');
 	}
 
 	// Capture a photo by fetching the current contents of the video
-	// and drawing it into a canvas1, then converting that to a PNG
-	// format data URL. By drawing it on an offscreen canvas1 and then
-	// drawing that to the screen, we can change its size and/or apply
-	// other changes before drawing it.
-	//
+	// and drawing it into a canvas, then converting that to a PNG
+	// format data URL. By drawing it on an offscreen canvas and then
+	// drawing that to the screen, we can change its size and overlay
+	// other images before drawing it.
 	
 	function takepicture() {
 		if (width && height) {
 			toggleStatus();
-			canvas1.getContext('2d').drawImage(video, 0, 0, width, height);
+			canvas.getContext('2d').drawImage(video, 0, 0, width, height);
 		} else {
 			clearphoto();
 		}
@@ -273,6 +253,5 @@
 
 	// Set up our event listener to run the startup process
 	// once loading is complete.
-	//
 	window.addEventListener('load', startup, false);
 })();

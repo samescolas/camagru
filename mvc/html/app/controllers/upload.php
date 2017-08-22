@@ -23,7 +23,6 @@ class Upload extends Controller {
 						'description' => Input::get('description')
 					));
 					$this->_image->upload();
-					$this->_image->display();
 				} catch (Exception $e) {
 					die($e->getMessage());
 				}

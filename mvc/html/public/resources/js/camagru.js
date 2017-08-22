@@ -224,17 +224,13 @@
 		} else {
 			video.pause();
 			captureButton.style.display = "none";
-			saveButton.style.display = "inherit";
+			if (document.getElementsByClassName("active-overlay-image").length > 0) {
+				saveButton.style.display = "inherit";
+			}
 			deleteButton.style.display = "inherit";
 		}
 	}
 
-	function overlay(image, x, y, width, height) {
-		console.log("overlaying image...");
-		console.log(image);
-		canvas.getContext('2d').drawImage(image, x, y, width, height);
-		image.setAttribute('crossOrigin', 'anonymous');
-	}
 
 	// Capture a photo by fetching the current contents of the video
 	// and drawing it into a canvas, then converting that to a PNG

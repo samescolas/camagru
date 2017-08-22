@@ -130,7 +130,7 @@ class Image {
 	public function store() {
 		if (!file_exists($this->_saveDir))
 			mkdir($this->_saveDir);
-		$this->_filepath = $this->_saveDir . Token::create() . '.pngggg';
+		$this->_filepath = $this->_saveDir . Token::create() . '.png';
 		file_put_contents($this->_filepath, $this->image);
 		$q = $this->_db->insert('images', array(
 			'user_id' => $this->userId,

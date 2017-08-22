@@ -59,7 +59,9 @@ body {
 }
 
 #nav-wrapper a:hover {
-	background-color: blue;
+	background-color: white;
+	color: #4242DD;
+	font-weight: bold;
 }
 
 #nav-wrapper a {
@@ -67,7 +69,7 @@ body {
 	text-decoration: none;
 	color: lavender;
 	height: 100%;
-	padding-top: 50%;
+	padding-top: 4vh;
 }
 
 .flash, .flash-container {

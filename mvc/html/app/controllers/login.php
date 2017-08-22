@@ -50,6 +50,7 @@ class Login extends Controller {
 			Session::flash('bad', 'Invalid login credentials');
 			Redirect::to('login');
 		}
+		Redirect::to('home');
 	}
 
 	private function validate_form() {

@@ -3,7 +3,7 @@
 class Image {
 	private $_db;
 	private $_saveDir;
-	private $_filepath;
+	public $filepath;
 	public $title;
 	public $description;
 	public $userId;
@@ -18,7 +18,7 @@ class Image {
 		$this->userId = isset($data['user_id']) ? $data['user_id'] : '';
 		$this->imageId = isset($data['image_id']) ? $data['image_id'] : -1;
 		$this->_saveDir= 'resources/uploads/' . $this->userId . '/';
-		$this->_filepath = isset($data['filepath']) ? $data['filepath'] : '';
+		$this->filepath = isset($data['filepath']) ? $data['filepath'] : '';
 		$this->title = isset($data['title']) ? $data['title'] : '';
 		$this->description = isset($data['description']) ? $data['description'] : '';
 		$this->comments = isset($data['comments']) ? $data['comments'] : $this->getComments();
@@ -56,7 +56,7 @@ class Image {
 		if (!isset($overlayImages)) {
 			return (false);
 		}
-		$image = imagecreatefrompng($this->_filepath);
+		$image = imagecreatefrompng($this->filepath);
 		$image = imagescale($image, 500);
 		foreach($overlayImages as $i) {
 			$overlayImg = imagecreatefrompng($i['filepath']);
@@ -84,7 +84,7 @@ class Image {
 			return ;
 		}
 		$img = $this->_db->get('images', array('id', '=', $this->imageId));
-		$this->_filepath = $img->first()->location;
+		$this->filepath = $img->first()->location;
 		$this->title = $img->first()->title;
 		$this->description = $img->first()->description;
 		$this->userId = $img->first()->user_id;
@@ -114,7 +114,7 @@ class Image {
 	}
 
 	public function display($width = 25, $all=True) {
-		echo "<img src=\"" . $this->_filepath . "\" width=\"".$width."%\">";
+		echo "<img src=\"" . $this->filepath . "\" width=\"".$width."%\">";
 		if ($all) {
 			echo "<div id=\"title-wrapper\">";
 				echo "<h1>".$this->title."</h1>";
@@ -128,7 +128,7 @@ class Image {
 	}
 
 	public function displayEditMode($width=25) {
-		echo "<img src=\"" . $this->_filepath . "\" width=\"" . $width . "%\">";
+		echo "<img src=\"" . $this->filepath . "\" width=\"" . $width . "%\">";
 		echo "<div id=\"title-wrapper\">";
 		echo "<input type=\"text\" value=\"" . $this->title . "\"/>";
 		echo "</div>";
@@ -138,17 +138,17 @@ class Image {
 	public function store() {
 		if (!file_exists($this->_saveDir))
 			mkdir($this->_saveDir);
-		$this->_filepath = $this->_saveDir . Token::create() . '.png';
-		file_put_contents($this->_filepath, $this->image);
+		$this->filepath = $this->_saveDir . Token::create() . '.png';
+		file_put_contents($this->filepath, $this->image);
 		$q = $this->_db->insert('images', array(
 			'user_id' => $this->userId,
-			'location' => $this->_filepath,
+			'location' => $this->filepath,
 			'image_type' => 'image/png',//$this->size['mime'],
 			'title' => $this->title,
 			'description' => $this->description
 		));
 		if ($q) {
-			$this->imageId = $this->_db->get('images', array('location', '=', $this->_filepath))->first()->id;
+			$this->imageId = $this->_db->get('images', array('location', '=', $this->filepath))->first()->id;
 		} else {
 			throw new Exception('Something went wrong.');
 		}
@@ -156,7 +156,7 @@ class Image {
 
 	public function del() {
 		$this->_db->del('images', array('id', '=', $this->imageId));
-		unlink($this->_filepath);
+		unlink($this->filepath);
 
 	}
 }

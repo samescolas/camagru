@@ -21,10 +21,11 @@ class Images extends Controller {
 		if ($id <= 0) {
 			Redirect::to('home');
 		}
-		$image = $this->model('Image', array(
-			'image_id' => $id
-		));
+		$image = $this->model('Image', array('image_id' => $id));
 		$image->lookup();
+		if (!isset($image->userId))
+			Redirect::to('home');
+		/*
 		if ($image->userId == $this->_user->data()->id) {
 			echo "<div id=\"image-container\">";
 				$image->displayEditMode();
@@ -37,6 +38,8 @@ class Images extends Controller {
 			echo "<form action=\"comment/" . $id . "\">";
 			echo "<input type=\"text\" name=\"comment\" placeholder=\"Comment here...\">";
 		}
+		*/
+		$this->view('forms/images', array('image' => $image));
 		$this->view('includes/footer');
 	}
 }

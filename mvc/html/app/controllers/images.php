@@ -25,8 +25,12 @@ class Images extends Controller {
 		$image->lookup();
 		if (!isset($image->userId))
 			Redirect::to('home');
-		/*
 		if ($image->userId == $this->_user->data()->id) {
+			$mine = true;
+		} else {
+			$mine = false;
+		}
+		/*
 			echo "<div id=\"image-container\">";
 				$image->displayEditMode();
 			echo "</div>";
@@ -39,7 +43,10 @@ class Images extends Controller {
 			echo "<input type=\"text\" name=\"comment\" placeholder=\"Comment here...\">";
 		}
 		*/
-		$this->view('forms/images', array('image' => $image));
+		$this->view('forms/images', array(
+			'image' => $image,
+			'mine' => $mine
+		));
 		$this->view('includes/footer');
 	}
 }

@@ -10,11 +10,26 @@
 	font-size: 5vmin;
 }
 
-#image {
-	height: 60%;
+#title h1 {
+	width: 80%;
+	background-color: steelblue;
+	float: left;
 }
 
-#image img {
+#title img {
+	display: block;
+	float: left;
+	max-width: 20%;
+	height: 12vmin;
+	background-color: indianred;
+}
+
+#image {
+	height: 60%;
+	background-color: red;
+}
+
+#main-image {
 	display: block;
 	margin: auto;
 	height: 100%;

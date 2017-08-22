@@ -130,7 +130,7 @@ class Image {
 	public function displayEditMode($width=25) {
 		echo "<img src=\"" . $this->_filepath . "\" width=\"" . $width . "%\">";
 		echo "<div id=\"title-wrapper\">";
-		echo "<h1><input type=\"text\" value=\"" . $this->title . "\"/><h1>";
+		echo "<input type=\"text\" value=\"" . $this->title . "\"/>";
 		echo "</div>";
 		echo "<p><input type=\"text\" value=\"" . $this->description . "\"/></p>";
 	}

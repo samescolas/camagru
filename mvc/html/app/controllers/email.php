@@ -17,6 +17,9 @@ class Email extends Controller {
 	}
 
 	public function index($username = '') {
+		if ($this->_user->isLoggedIn() && $this->_user->isVerified()) {
+			Redirect::to('home');
+		}
 		Session::flash('welcome', 'Email sent!');
 		echo "<h3>Please verify your email address.</h3><br />";
 		echo "<form action=\"email/resend\">";

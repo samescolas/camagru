@@ -23,7 +23,6 @@ class Upload extends Controller {
 						'description' => Input::get('description')
 					));
 					$this->_image->upload();
-					$this->_image->display();
 				} catch (Exception $e) {
 					die($e->getMessage());
 				}
@@ -34,7 +33,7 @@ class Upload extends Controller {
 			}
 		}
 		$this->view('includes/header', array(
-			'stylesheets' => array('header'),
+			'stylesheets' => array('header', 'form'),
 			'navs' => array(
 				'Logout' => 'logout',
 				'Browse' => 'browse',

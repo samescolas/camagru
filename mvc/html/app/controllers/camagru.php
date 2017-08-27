@@ -11,6 +11,7 @@ class Camagru extends Controller {
 			'stylesheets' => array('header', 'camagru'),
 			'navs' => array(
 				'Logout' => 'logout',
+				'Profile' => 'profile',
 				'Browse' => 'browse',
 				'Upload Image' => 'upload'
 			)
@@ -20,7 +21,6 @@ class Camagru extends Controller {
 	public function index($username = '') {
 		$userImages = $this->_user->getImages();
 		$this->view('camera/capture', array(
-			'overlayUrls' => array(),
 			'images' => $userImages
 		));
 		$this->view('includes/footer');

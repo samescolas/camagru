@@ -21,21 +21,32 @@ class Images extends Controller {
 		if ($id <= 0) {
 			Redirect::to('home');
 		}
-		$image = $this->model('Image', array(
-			'image_id' => $id
-		));
+		$image = $this->model('Image', array('image_id' => $id));
 		$image->lookup();
-		echo "<div id=\"image-container\">";
-			$image->display();
-		echo "</div>";
+		if (!isset($image->userId))
+			Redirect::to('home');
 		if ($image->userId == $this->_user->data()->id) {
-			// mine
+			$mine = true;
+		} else {
+			$mine = false;
+		}
+		/*
+			echo "<div id=\"image-container\">";
+				$image->displayEditMode();
+			echo "</div>";
 			echo "<a href=\"del/" . $id . "\"><button>Delete</button></a>";
 		} else {
-			// others
+			echo "<div id=\"image-container\">";
+				$image->display();
+			echo "</div>";
 			echo "<form action=\"comment/" . $id . "\">";
 			echo "<input type=\"text\" name=\"comment\" placeholder=\"Comment here...\">";
 		}
+		*/
+		$this->view('forms/images', array(
+			'image' => $image,
+			'mine' => $mine
+		));
 		$this->view('includes/footer');
 	}
 }

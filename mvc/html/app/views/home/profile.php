@@ -1,4 +1,5 @@
 <?php 
+
 if (isset($data['images'])) {
 	foreach ($data['images'] as $i) {
 		echo "<div class=\"img-wrapper\">";
@@ -6,4 +7,5 @@ if (isset($data['images'])) {
 		echo "</div>";
 	}
 }
+
 ?>

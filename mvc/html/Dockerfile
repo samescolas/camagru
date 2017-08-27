@@ -5,7 +5,7 @@ ENV SITE_CONF sites-available/000-default.conf
 
 COPY ./ /var/www/html
 
-RUN mkdir -p /var/www/html/public/resource/uploads
+RUN mkdir -p /var/www/html/public/resources/uploads
 
 RUN mv /var/www/html/.vimrc /root/.vimrc && mv /var/www/html/.bashrc /root/.bashrc
 
@@ -13,6 +13,7 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
 	sendmail-bin \
 	php \
 	php7.0-mysql \
+	php-gd \
 	mysql-server \
 	apache2 \
 	vim \

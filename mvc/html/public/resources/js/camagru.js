@@ -46,6 +46,8 @@
 		},
 		function (err) {
 			console.log("An error occured! " + err);
+			console.log("Redirecting to upload!");
+			window.location.replace("/upload");
 		}
 		);
 

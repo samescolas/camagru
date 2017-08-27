@@ -30,19 +30,6 @@ class Images extends Controller {
 		} else {
 			$mine = false;
 		}
-		/*
-			echo "<div id=\"image-container\">";
-				$image->displayEditMode();
-			echo "</div>";
-			echo "<a href=\"del/" . $id . "\"><button>Delete</button></a>";
-		} else {
-			echo "<div id=\"image-container\">";
-				$image->display();
-			echo "</div>";
-			echo "<form action=\"comment/" . $id . "\">";
-			echo "<input type=\"text\" name=\"comment\" placeholder=\"Comment here...\">";
-		}
-		*/
 		$this->view('forms/images', array(
 			'image' => $image,
 			'mine' => $mine

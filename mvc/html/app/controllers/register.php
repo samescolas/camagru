@@ -12,8 +12,7 @@ class Register extends Controller {
 			'stylesheets' => array('header', 'form'),
 			'scripts' => array('flash'),
 			'navs' => array(
-				'Login' => 'login',
-				'Browse' => 'browse'
+				'Login' => 'login'
 			)
 		));
 	}

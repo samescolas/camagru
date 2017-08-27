@@ -3,7 +3,7 @@
 		<h1><?=$data['image']->title ?></h1>
 		<div id="settings-img-container">
 		<?php if ($data['mine']) {
-			echo "<img id=\"settings-img\" src=\"resources/imgs/settings.png\"/ align=\"right\">";} 
+			echo "<a href=\"/updateimg/" . $data['image']->imageId . "\"><img id=\"settings-img\" src=\"resources/imgs/settings.png\"/ align=\"right\"></a>";} 
 		?>
 		</div>
 	</div>

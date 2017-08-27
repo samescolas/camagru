@@ -48,5 +48,10 @@ p {
 p#likes {
 }
 
-p.comment {
+p.comment:nth-of-type(even) {
+	background-color: maroon;
+}
+
+p.comment:nth-of-type(odd) {
+	background-color: gainsboro;
 }

@@ -7,7 +7,7 @@ COPY ./ /var/www/html
 
 RUN mkdir -p /var/www/html/public/resource/uploads
 
-RUN mv /var/www/html/.vimrc /root/.vimrc
+RUN mv /var/www/html/.vimrc /root/.vimrc && mv /var/www/html/.bashrc /root/.bashrc
 
 RUN apt-get update && apt-get upgrade && apt-get install -y \
 	sendmail-bin \

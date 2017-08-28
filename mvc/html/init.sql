@@ -49,7 +49,8 @@ CREATE TABLE likes (
 	image_id INT NOT NULL,
 	dt DATETIME NOT NULL DEFAULT NOW(),
 	PRIMARY KEY (id),
-	FOREIGN KEY (user_id) REFERENCES users(id),
+	UNIQUE(user_id, image_id),
+	FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
 	FOREIGN KEY (image_id) REFERENCES images(id) ON DELETE CASCADE
 );
 

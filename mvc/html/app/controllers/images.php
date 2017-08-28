@@ -11,8 +11,6 @@ class Images extends Controller {
 			'navs' => array(
 				'Logout' => 'logout',
 				'Browse' => 'browse',
-				'Upload Image' => 'upload',
-				'Profile' => 'profile'
 			)
 		));
 	}

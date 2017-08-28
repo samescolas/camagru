@@ -15,8 +15,6 @@ class ChangePassword extends Controller {
 			'navs' => array(
 				'Logout' => 'logout',
 				'Browse' => 'browse',
-				'Upload Photo' => 'upload',
-				'Home' => 'home'
 			)
 		));
 	}

@@ -37,9 +37,6 @@ class Upload extends Controller {
 			'navs' => array(
 				'Logout' => 'logout',
 				'Browse' => 'browse',
-				'Upload Photo' => 'upload',
-				'Profile' => 'profile',
-				'Home' => 'home'
 			)
 		));
 		$this->view('profile/upload');

@@ -14,7 +14,7 @@ class Browse extends Controller {
 			'stylesheets' => array('header', 'profile'),
 			'navs' => array(
 				'Logout' => 'logout',
-				'Profile' => 'profile'
+				'Change Password' => 'changepassword'
 			)
 		));
 	}

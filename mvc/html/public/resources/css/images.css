@@ -1,68 +1,57 @@
 #main-wrapper {
-	height: 80vh;
 	width: 100%;
-	text-align: center;
+	height: 75vh;
 }
 
 #title {
-	display: block;
+	width: 100%;
+	height: 15vh;
 	text-align: center;
-	font-size: 5vmin;
 }
 
 #title h1 {
+	display: inline;
 	width: 80%;
-	background-color: steelblue;
+	font-size: 9vmin;
 	float: left;
 }
 
-#title img {
-	display: block;
-	float: left;
-	max-width: 20%;
-	height: 12vmin;
-	background-color: indianred;
+#settings-img-container {
+	padding: 2% 5% 0 0;
+	width: 15%;
+	float: right;
 }
 
-#image {
-	height: 60%;
-	background-color: red;
-}
-
-#main-image {
-	display: block;
-	margin: auto;
-	height: 100%;
+#settings-img {
+	max-height: 7vmin;
 	width: auto;
-	max-width: 100%;
-}
-
-#likes, #comments {
-	font-size: 3.5vmin;
-}
-
-#likes {
 	display: block;
-	width: 90%;
-	height: 5%;
+}
+
+#image-container {
+	width: 100%;
 	text-align: center;
 }
 
-#comments {
-	height: 25%;
+img#main-img {
+	min-height: 40vmin;
+	max-height: 50vmin;
+	width: auto;
+}
+
+p {
+	text-align: center;
+	display: block;
 	width: 100%;
 }
 
-.comment {
-	display: block;
-	width: 80%;
-	margin: 0 auto;
+p#likes {
 }
 
-.comment:nth-child(even) {
+p.comment:nth-of-type(even) {
+	background-color: maroon;
+}
+
+p.comment:nth-of-type(odd) {
 	background-color: gainsboro;
-}
-
-.comment:nth-child(odd) {
-	background-color: indianred;
 }

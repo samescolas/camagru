@@ -87,7 +87,7 @@ class User {
 			return (false);
 		}
 		if ($all) {
-			$images = $this->_db->get('images', array('user_id', '>', '0'))->results();
+			$images = array_reverse($this->_db->get('images', array('user_id', '>', '0'))->results());
 		} else {
 			$images = $this->_db->get('images', array('user_id', '=', $this->data()->id))->results();
 		}

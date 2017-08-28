@@ -19,20 +19,32 @@ class Browse extends Controller {
 		));
 	}
 
-	public function index($page=1) {
+	public function index($page=0) {
+		if ($page == 0) {
+			Redirect::to('browse/1');
+		}
 		$this->_images = $this->_user->getImages(True);
+		$this->_pages = (count($this->_images) / 6) + 1;
 		if (count($this->_images) <= 0) {
 			echo "There are no images to display.";
 		}
-		if ($page < 0 || $page - 1 > count($this->_images) / 6) {
+		if ($page < 0 || $page > $this->_pages) {
 			Redirect::to(404);
 		}
-		if ($this->_images) {
-			$this->view('home/profile', array('images' => array_slice($this->_images, ($page - 1) * 6, 6)));
+		echo "<div id=\"main-content\">";
+		$toDisplay = array_slice($this->_images, ($page - 1) * 6, 6);
+		foreach ($toDisplay as $img) {
+			$this->view('dispimg', array(
+				'all' => True,
+				'image' => $img
+			));
 		}
-		 else {
-			echo "Camagru hasn't taken any pictures yet, come back later!";
-		}
+		echo "</div>";
+		$this->view('pagination', array(
+			'base' => 'browse',
+			'pages' => $this->_pages,
+			'current' => $page
+		));
 		$this->view('includes/footer');
 	}
 }

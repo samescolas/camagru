@@ -53,7 +53,7 @@ class Database {
 		return ($this);
 	}
 
-	public function action($action, $table, $where = array()) {
+	public function action($action, $table, $where = array(), $orderBy="") {
 		if (count($where) === 3) {
 			$operators = array('=', '>', '<', '>=', '<=');
 			$field = $where[0];
@@ -61,7 +61,7 @@ class Database {
 			$value = $where[2];
 
 			if (in_array($operator, $operators)) {
-				$sql = "$action FROM $table WHERE $field $operator ?";
+				$sql = "$action FROM $table WHERE $field $operator ? $orderBy";
 
 				if (!$this->query($sql, array($value))->error()) {
 					return ($this);
@@ -78,7 +78,7 @@ class Database {
 		return ($this->results()[0]);
 	}
 
-	public function get($table, $where) {
+	public function get($table, $where, $orderBy="") {
 		return ($this->action('SELECT *', $table, $where));
 	}
 

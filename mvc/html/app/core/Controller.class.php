@@ -14,7 +14,7 @@ class Controller {
 	}
 
 	public function view($view, $data = array()) {
-		require_once __DIR__ . '/../views/' . $view . '.php';
+		require __DIR__ . '/../views/' . $view . '.php';
 	}
 }
 

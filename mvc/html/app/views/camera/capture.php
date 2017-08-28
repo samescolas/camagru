@@ -19,7 +19,7 @@
 </div>
 <div id="side-panel">
 <?php
-	if (isset($data['images'])) {
+	if (isset($data['images']) && count($data['images']) > 0) {
 		foreach($data['images'] as $img) {
 			echo "<div class=\"user-image\">";
 				echo "<a href=\"images/" . $img->imageId . "\">";

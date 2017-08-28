@@ -1,6 +1,9 @@
 <div class="img-wrapper">
 	<img src="<?=$data['image']->filepath ?>">
-	<?php if ($data['all'])  { ?>
+	<?php if ($data['all'] || $data['username']) { ?>
+	<h3 class="username"><?=$data['image']->userName ?></h3>
+	<?php }
+	if ($data['all'])  { ?>
 		<div id="title-wrapper">
 			<h1><?=$data['image']->title ?></h1>
 			<a id="likes" href="like/<?=$data['image']->imageId ?>">&hearts; <?=$data['image']->likes ?></a>

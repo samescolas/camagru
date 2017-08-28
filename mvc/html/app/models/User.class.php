@@ -102,6 +102,7 @@ class User {
 				));
 				$ret[$i]->getComments();
 				$ret[$i]->getLikes();
+				$ret[$i]->lookup();
 			}
 			return ($ret);
 		}

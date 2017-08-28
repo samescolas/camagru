@@ -11,7 +11,7 @@ class Browse extends Controller {
 		$this->_images = array();
 		$this->_user->shield();
 		$this->view('includes/header', array(
-			'stylesheets' => array('header', 'profile'),
+			'stylesheets' => array('header', 'browse'),
 			'navs' => array(
 				'Logout' => 'logout',
 				'Change Password' => 'changepassword'
@@ -36,6 +36,8 @@ class Browse extends Controller {
 		foreach ($toDisplay as $img) {
 			$this->view('dispimg', array(
 				'all' => True,
+				'comments' => True,
+				'likes' => True,
 				'image' => $img
 			));
 		}

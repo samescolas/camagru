@@ -13,8 +13,7 @@ class UpdateImg extends Controller {
 			'stylesheets' => array('header', 'form'),
 			'navs' => array(
 				'Logout' => 'logout',
-				'Browse' => 'browse',
-				'Profile' => 'profile'
+				'Browse' => 'browse'
 			)
 		));
 	}

@@ -12,6 +12,7 @@ class Image {
 	public $image;
 	public $likes;
 	public $comments;
+	public $userName;
 
 	public function __construct($data = array()) {
 		$this->_db = Database::getInstance();
@@ -90,6 +91,11 @@ class Image {
 		$this->userId = $img->first()->user_id;
 		$this->likes = $this->getLikes();
 		$this->comments = $this->getComments();
+		$this->getImageUserName($this->userId);
+	}
+
+	private function getImageUserName($userId) {
+		$this->userName = $this->_db->get('users', array('id', '=', $userId))->first()->username;
 	}
 
 	public function upload() {

@@ -81,12 +81,16 @@ class User {
 		}
 	}
 
-	public function getImages() {
+	public function getImages($all=False) {
 		$ret = array();
 		if (!$this->data()->id) {
 			return (false);
 		}
-		$images = $this->_db->get('images', array('user_id', '=', $this->data()->id))->results();
+		if ($all) {
+			$images = $this->_db->get('images', array('user_id', '>', '0'))->results();
+		} else {
+			$images = $this->_db->get('images', array('user_id', '=', $this->data()->id))->results();
+		}
 		if (count($images)) {
 			for ($i=0; $i<count($images); $i++) {
 				$ret[] = new Image(array(

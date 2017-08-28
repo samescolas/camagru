@@ -14,16 +14,21 @@ class Browse extends Controller {
 			'stylesheets' => array('header', 'profile'),
 			'navs' => array(
 				'Logout' => 'logout',
-				'Profile' => 'profile',
-				'Home' => 'home'
+				'Profile' => 'profile'
 			)
 		));
 	}
 
-	public function index($username = '') {
-		$this->_images = $this->_user->getImages();
+	public function index($page=1) {
+		$this->_images = $this->_user->getImages(True);
+		if (count($this->_images) <= 0) {
+			echo "There are no images to display.";
+		}
+		if ($page < 0 || $page - 1 > count($this->_images) / 6) {
+			Redirect::to(404);
+		}
 		if ($this->_images) {
-			$this->view('home/profile', array ('images' => $this->_images));
+			$this->view('home/profile', array('images' => array_slice($this->_images, ($page - 1) * 6, 6)));
 		}
 		 else {
 			echo "Camagru hasn't taken any pictures yet, come back later!";

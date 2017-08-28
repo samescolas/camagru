@@ -30,7 +30,7 @@ class Images extends Controller {
 		} else {
 			$mine = false;
 		}
-		$this->view('forms/images', array(
+		$this->view('images', array(
 			'image' => $image,
 			'mine' => $mine
 		));

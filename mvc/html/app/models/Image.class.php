@@ -159,4 +159,16 @@ class Image {
 		unlink($this->filepath);
 
 	}
+
+	public function updateTitle($newTitle) {
+		$title = htmlspecialchars($newTitle);
+		if ($title == "") {
+			return (-1);
+		}
+		$fields = array("title" => $title);
+		if (!$this->_db->update('images', $this->imageId, $fields)) {
+			throw new Exception('There was a problem updating your shit.');
+		}
+		return (1);
+	}
 }

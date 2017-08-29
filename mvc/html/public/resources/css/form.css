@@ -3,7 +3,6 @@
 }
 
 form {
-	position: relative;
 	top: 14vh;
 	text-align: center;
 	margin: 0 auto;
@@ -12,12 +11,11 @@ form {
 
 h2 {
 	font-weight: bold;
-	font-size: 300%;
+	font-size: 7vmin;
 	font-family: 'Lobster', cursive, sans-serif;
 	color: #333;
 	text-align: center;
-	position: relative;
-	top: 7vh;
+	margin-top: 2vh;
 }
 
 h3 {
@@ -44,4 +42,15 @@ input[type="submit"] {
 	width: 20vw;
 	height: 3vmin;
 	margin-top: 15px;
+}
+
+#image-container {
+	width: 100%;
+}
+
+#main-img {
+	margin: auto;
+	display: block;
+	max-height: 50%;
+	max-width: 50%;
 }

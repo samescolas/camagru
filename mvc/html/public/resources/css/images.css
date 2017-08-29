@@ -40,26 +40,28 @@
 
 p {
 	text-align: center;
+	margin: 0 auto;
 	display: block;
-	width: 100%;
-}
-
-p#likes {
+	width: 95%;
+	border-radius: 5px;
 }
 
 #comments {
+	border-radius: 15px;
 	margin-top: 2vh;
 	height: 20%;
 	overflow: scroll;
 	font-size: 2.3vmin;
+	background-color: #4242dd;
 }
 
 p.comment:nth-of-type(even) {
-	background-color: #424dd4;
+	background-color: lavender;
 }
 
 p.comment:nth-of-type(odd) {
-	background-color: gainsboro;
+	border: 1px solid #4242dd;
+	background-color: white;
 }
 
 #comment-form {

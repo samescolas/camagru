@@ -1,5 +1,8 @@
 <div class="main">
 	<h2>Update Image</h2>
+	<div id="image-container">
+		<img id="main-img" src="<?=$data['filepath'] ?>">
+	</div>
 	<form action="updateimg/submit/<?=$data['id'] ?>" method="post">
 	<input autofocus="autofocus" type="text" name="title" placeholder="<?=$data['oldTitle'] ?>" id="title" autocomplete="off" />
 		<br />

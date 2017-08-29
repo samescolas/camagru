@@ -109,14 +109,6 @@ class User {
 		return (false);
 	}
 
-	public function comment($imageId, $comment) {
-		$this->_db->insert('comments', array(
-			'user_id' => $this->data()->id,
-			'image_id' => $imageId,
-			'comment' => $comment
-		));
-	}
-
 	public function isVerified() {
 		if (!$this->isLoggedIn() || $this->data()->token) {
 			return (false);
@@ -155,6 +147,30 @@ class User {
 			return (true);
 		}
 		return (false);
+	}
+
+	public function comment($imageId, $comment) {
+		$this->_db->insert('comments', array(
+			'user_id' => $this->data()->id,
+			'image_id' => $imageId,
+			'comment' => $comment
+		));
+		$this->sendCommentEmail($this->data()->id, $imageId, $comment);
+	}
+
+	private function sendCommentEmail($userId, $imageId, $comment) {
+		if ($userId < 0 || $imageId < 0 || $comment == '') {
+			return (-1);
+		}
+		$toUser = $this->_db->get('users', array('id', '=', $userId))->first();
+		$link = "http://" . $_SERVER['SERVER_NAME'] . "/images/" . $imageId;
+		mail(
+			$toUser->email,
+			"New Comment",
+			$toUser->username . " just left a comment on your image. Check it out: $link",
+			"From: guru@camagru.com"
+		);
+		Redirect::to("images/$imageId");
 	}
 
 	private function sendValidationEmail($fields, $token = null) {

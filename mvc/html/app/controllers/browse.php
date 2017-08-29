@@ -34,7 +34,7 @@ class Browse extends Controller {
 		echo "<div id=\"main-content\">";
 		$toDisplay = array_slice($this->_images, ($page - 1) * 6, 6);
 		foreach ($toDisplay as $img) {
-			$this->view('dispimg', array(
+			$this->view('browse', array(
 				'all' => True,
 				'comments' => True,
 				'likes' => True,

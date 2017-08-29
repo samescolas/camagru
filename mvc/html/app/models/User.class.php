@@ -109,6 +109,14 @@ class User {
 		return (false);
 	}
 
+	public function comment($imageId, $comment) {
+		$this->_db->insert('comments', array(
+			'user_id' => $this->data()->id,
+			'image_id' => $imageId,
+			'comment' => $comment
+		));
+	}
+
 	public function isVerified() {
 		if (!$this->isLoggedIn() || $this->data()->token) {
 			return (false);

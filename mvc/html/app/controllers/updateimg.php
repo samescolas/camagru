@@ -32,6 +32,7 @@ class UpdateImg extends Controller {
 		}
 		$this->view('forms/updateimg', array (
 			'id' => $id,
+			'filepath' => $image->filepath,
 			'oldTitle' => $image->title
 		));
 	}

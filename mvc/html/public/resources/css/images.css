@@ -33,10 +33,9 @@
 	text-align: center;
 }
 
-img#main-img {
-	min-height: 40vmin;
-	max-height: 50vmin;
-	width: auto;
+#image-container #main-img {
+	max-width: 40%;
+	max-height: 50%;
 }
 
 p {
@@ -48,10 +47,27 @@ p {
 p#likes {
 }
 
+#comments {
+	margin-top: 2vh;
+	height: 20%;
+	overflow: scroll;
+	font-size: 2.3vmin;
+}
+
 p.comment:nth-of-type(even) {
-	background-color: maroon;
+	background-color: #424dd4;
 }
 
 p.comment:nth-of-type(odd) {
 	background-color: gainsboro;
+}
+
+#comment-form {
+	margin-top: 1vh;
+	width: 100%;
+	text-align: center;
+}
+
+#comment-field {
+	width: 50%;
 }

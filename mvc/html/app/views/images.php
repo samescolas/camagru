@@ -18,4 +18,9 @@
 		}
 ?>
 	</div>
+	<form id="comment-form" method="post" action="comment/<?=$data['image']->imageId ?>">
+		<input id="comment-field" type="text" name="comment" placeholder="Comment..." />
+		<input id="userId" type="hidden" name="userid" value="<?=$data['image']->userId ?>" />
+		<input id="comment-submit" type="submit" value="Send" />
+	</form>
 </div>

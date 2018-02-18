@@ -12,6 +12,7 @@
 				echo "\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"/resources/css/$s.css\">\n";
 	?>
 	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+	<link rel="icon" type="image/png" href="/resources/favicon/favicon.ico">
 </head>
 <body>
 	<div id="header">
